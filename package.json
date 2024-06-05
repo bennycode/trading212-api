@@ -1,0 +1,68 @@
+{
+  "bin": {
+    "ts-node-starter": "dist/cli.js"
+  },
+  "bugs": {
+    "url": "https://github.com/bennycode/ts-node-starter/issues"
+  },
+  "description": "",
+  "devDependencies": {
+    "@evilmartians/lefthook": "^1.6.14",
+    "@tstv/eslint-config": "^3.1.6",
+    "@tstv/tsconfig-common": "^3.4.1",
+    "@types/node": "^20.13.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "generate-changelog": "^1.8.0",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.7",
+    "tsimp": "^2.0.11",
+    "typedoc": "^0.25.13",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.1"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*"
+  ],
+  "homepage": "https://www.npmjs.com/package/ts-node-starter",
+  "keywords": [],
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "name": "@bennycode/ts-node-starter",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bennycode/ts-node-starter.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check": "npm run check:format -- --list-different && npm run check:lint",
+    "check:format": "prettier --ignore-path .gitignore --log-level error .",
+    "check:lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern .",
+    "clean": "rimraf coverage dist docs",
+    "commit": "npm run fix && git commit -am \"chore: Generated release files\"",
+    "deploy": "exit 0",
+    "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",
+    "dist": "npm run clean && npm run build",
+    "docs": "npm run docs:build",
+    "docs:build": "typedoc src/index.ts",
+    "fix": "npm run fix:format && npm run fix:lint",
+    "fix:format": "npm run check:format -- --write",
+    "fix:lint": "npm run check:lint -- --fix --quiet",
+    "postversion": "git push origin && git push origin --tags && npm publish --access public",
+    "preversion": "git checkout main && git pull && npm install && npm run test && npm run dist",
+    "release:major": "generate-changelog -M -x \"chore,test\" && npm run docs && npm run commit && npm version major",
+    "release:minor": "generate-changelog -m -x \"chore,test\" && npm run docs && npm run commit && npm version minor",
+    "release:patch": "generate-changelog -p -x \"chore,test\" && npm run docs && npm run commit && npm version patch",
+    "revert:release": "npm unpublish @bennycode/ts-node-starter",
+    "start": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/start.ts",
+    "test": "npm run test:types && npm run test:unit:coverage",
+    "test:types": "tsc --noEmit",
+    "test:unit": "vitest run --passWithNoTests",
+    "test:unit:coverage": "npm run test:unit -- --coverage.enabled"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}

@@ -1,0 +1,15 @@
+*.env
+*hot-update.js*
+.cache
+.DS_Store
+.idea/
+.tsimp/
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+config.json
+coverage/
+dist/
+lerna-debug.log
+node_modules/
+npm-debug.log*
