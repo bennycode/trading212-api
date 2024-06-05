@@ -30,7 +30,7 @@
   "keywords": [],
   "license": "UNLICENSED",
   "main": "dist/index.js",
-  "name": "@bennycode/trading212-api",
+  "name": "trading212-api",
   "private": false,
   "repository": {
     "type": "git",
