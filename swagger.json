@@ -72,9 +72,7 @@
           }
         ],
         "summary": "Fetch account cash",
-        "tags": [
-          "Account Data"
-        ]
+        "tags": ["Account Data"]
       }
     },
     "/api/v0/equity/account/info": {
@@ -110,9 +108,7 @@
           }
         ],
         "summary": "Fetch account metadata",
-        "tags": [
-          "Account Data"
-        ]
+        "tags": ["Account Data"]
       }
     },
     "/api/v0/equity/history/orders": {
@@ -184,9 +180,7 @@
           }
         ],
         "summary": "Historical order data",
-        "tags": [
-          "Historical items"
-        ]
+        "tags": ["Historical items"]
       }
     },
     "/api/v0/equity/metadata/exchanges": {
@@ -226,9 +220,7 @@
           }
         ],
         "summary": "Exchange List",
-        "tags": [
-          "Instruments Metadata"
-        ]
+        "tags": ["Instruments Metadata"]
       }
     },
     "/api/v0/equity/metadata/instruments": {
@@ -268,9 +260,7 @@
           }
         ],
         "summary": "Instrument List",
-        "tags": [
-          "Instruments Metadata"
-        ]
+        "tags": ["Instruments Metadata"]
       }
     },
     "/api/v0/equity/orders": {
@@ -309,9 +299,7 @@
           }
         ],
         "summary": "Fetch all",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       }
     },
     "/api/v0/equity/orders/limit": {
@@ -367,9 +355,7 @@
           }
         ],
         "summary": "Place Limit order",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       }
     },
     "/api/v0/equity/orders/market": {
@@ -425,9 +411,7 @@
           }
         ],
         "summary": "Place Market order",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       }
     },
     "/api/v0/equity/orders/stop": {
@@ -483,9 +467,7 @@
           }
         ],
         "summary": "Place Stop order",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       }
     },
     "/api/v0/equity/orders/stop_limit": {
@@ -541,9 +523,7 @@
           }
         ],
         "summary": "Place StopLimit order",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       }
     },
     "/api/v0/equity/orders/{id}": {
@@ -596,9 +576,7 @@
           }
         ],
         "summary": "Cancel by ID",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       },
       "get": {
         "operationId": "orderById",
@@ -646,9 +624,7 @@
           }
         ],
         "summary": "Fetch by ID",
-        "tags": [
-          "Equity Orders"
-        ]
+        "tags": ["Equity Orders"]
       }
     },
     "/api/v0/equity/pies": {
@@ -688,9 +664,7 @@
           }
         ],
         "summary": "Fetch all pies",
-        "tags": [
-          "Pies"
-        ]
+        "tags": ["Pies"]
       },
       "post": {
         "description": "Creates a pie for the account by given params",
@@ -738,9 +712,7 @@
           }
         ],
         "summary": "Create pie",
-        "tags": [
-          "Pies"
-        ]
+        "tags": ["Pies"]
       }
     },
     "/api/v0/equity/pies/{id}": {
@@ -791,9 +763,7 @@
           }
         ],
         "summary": "Delete pie",
-        "tags": [
-          "Pies"
-        ]
+        "tags": ["Pies"]
       },
       "get": {
         "description": "Fetches a pies for the account with detailed information",
@@ -839,9 +809,7 @@
           }
         ],
         "summary": "Fetch a pie",
-        "tags": [
-          "Pies"
-        ]
+        "tags": ["Pies"]
       },
       "post": {
         "description": "Updates a pie for the account by given params",
@@ -900,9 +868,7 @@
           }
         ],
         "summary": "Update pie",
-        "tags": [
-          "Pies"
-        ]
+        "tags": ["Pies"]
       }
     },
     "/api/v0/equity/portfolio": {
@@ -942,9 +908,7 @@
           }
         ],
         "summary": "Fetch all open positions",
-        "tags": [
-          "Personal Portfolio"
-        ]
+        "tags": ["Personal Portfolio"]
       }
     },
     "/api/v0/equity/portfolio/{ticker}": {
@@ -998,9 +962,7 @@
           }
         ],
         "summary": "Fetch a specific position",
-        "tags": [
-          "Personal Portfolio"
-        ]
+        "tags": ["Personal Portfolio"]
       }
     },
     "/api/v0/history/dividends": {
@@ -1072,9 +1034,7 @@
           }
         ],
         "summary": "Paid out dividends",
-        "tags": [
-          "Historical items"
-        ]
+        "tags": ["Historical items"]
       }
     },
     "/api/v0/history/exports": {
@@ -1117,9 +1077,7 @@
           }
         ],
         "summary": "Exports List",
-        "tags": [
-          "Historical items"
-        ]
+        "tags": ["Historical items"]
       },
       "post": {
         "description": "Request a csv export of the account's orders, dividends and transactions history",
@@ -1167,9 +1125,7 @@
           }
         ],
         "summary": "Export csv",
-        "tags": [
-          "Historical items"
-        ]
+        "tags": ["Historical items"]
       }
     },
     "/api/v0/history/transactions": {
@@ -1232,9 +1188,7 @@
           }
         ],
         "summary": "Transaction list",
-        "tags": [
-          "Historical items"
-        ]
+        "tags": ["Historical items"]
       }
     }
   },
@@ -1263,10 +1217,7 @@
             "type": "string"
           },
           "dividendCashAction": {
-            "enum": [
-              "REINVEST",
-              "TO_ACCOUNT_CASH"
-            ],
+            "enum": ["REINVEST", "TO_ACCOUNT_CASH"],
             "type": "string"
           },
           "endDate": {
@@ -1404,11 +1355,7 @@
           },
           "status": {
             "description": "Status of the pie based on the set goal",
-            "enum": [
-              "AHEAD",
-              "ON_TRACK",
-              "BEHIND"
-            ],
+            "enum": ["AHEAD", "ON_TRACK", "BEHIND"],
             "type": "string"
           }
         },
@@ -1508,14 +1455,7 @@
             "type": "string"
           },
           "executor": {
-            "enum": [
-              "API",
-              "IOS",
-              "ANDROID",
-              "WEB",
-              "SYSTEM",
-              "AUTOINVEST"
-            ],
+            "enum": ["API", "IOS", "ANDROID", "WEB", "SYSTEM", "AUTOINVEST"],
             "type": "string"
           },
           "fillCost": {
@@ -1534,10 +1474,7 @@
             "type": "number"
           },
           "fillType": {
-            "enum": [
-              "TOTV",
-              "OTC"
-            ],
+            "enum": ["TOTV", "OTC"],
             "type": "string"
           },
           "filledQuantity": {
@@ -1599,19 +1536,11 @@
           },
           "timeValidity": {
             "description": "Applicable to stop, limit and stopLimit orders",
-            "enum": [
-              "DAY",
-              "GTC"
-            ],
+            "enum": ["DAY", "GTC"],
             "type": "string"
           },
           "type": {
-            "enum": [
-              "LIMIT",
-              "STOP",
-              "MARKET",
-              "STOP_LIMIT"
-            ],
+            "enum": ["LIMIT", "STOP", "MARKET", "STOP_LIMIT"],
             "type": "string"
           }
         },
@@ -1714,12 +1643,7 @@
             "type": "string"
           },
           "type": {
-            "enum": [
-              "WITHDRAW",
-              "DEPOSIT",
-              "FEE",
-              "TRANSFER"
-            ],
+            "enum": ["WITHDRAW", "DEPOSIT", "FEE", "TRANSFER"],
             "type": "string"
           }
         },
@@ -1739,11 +1663,7 @@
             "type": "string"
           },
           "severity": {
-            "enum": [
-              "IRREVERSIBLE",
-              "REVERSIBLE",
-              "INFORMATIVE"
-            ],
+            "enum": ["IRREVERSIBLE", "REVERSIBLE", "INFORMATIVE"],
             "type": "string"
           }
         },
@@ -1782,10 +1702,7 @@
           },
           "timeValidity": {
             "description": "Expiration",
-            "enum": [
-              "DAY",
-              "GTC"
-            ],
+            "enum": ["DAY", "GTC"],
             "example": "DAY",
             "type": "string"
           }
@@ -1852,10 +1769,7 @@
             "type": "number"
           },
           "strategy": {
-            "enum": [
-              "QUANTITY",
-              "VALUE"
-            ],
+            "enum": ["QUANTITY", "VALUE"],
             "type": "string"
           },
           "ticker": {
@@ -1864,12 +1778,7 @@
             "type": "string"
           },
           "type": {
-            "enum": [
-              "LIMIT",
-              "STOP",
-              "MARKET",
-              "STOP_LIMIT"
-            ],
+            "enum": ["LIMIT", "STOP", "MARKET", "STOP_LIMIT"],
             "type": "string"
           },
           "value": {
@@ -1924,10 +1833,7 @@
       "PieRequest": {
         "properties": {
           "dividendCashAction": {
-            "enum": [
-              "REINVEST",
-              "TO_ACCOUNT_CASH"
-            ],
+            "enum": ["REINVEST", "TO_ACCOUNT_CASH"],
             "type": "string"
           },
           "endDate": {
@@ -2041,14 +1947,7 @@
           },
           "frontend": {
             "description": "Origin",
-            "enum": [
-              "API",
-              "IOS",
-              "ANDROID",
-              "WEB",
-              "SYSTEM",
-              "AUTOINVEST"
-            ],
+            "enum": ["API", "IOS", "ANDROID", "WEB", "SYSTEM", "AUTOINVEST"],
             "type": "string"
           },
           "fxPpl": {
@@ -2131,14 +2030,7 @@
             "type": "integer"
           },
           "status": {
-            "enum": [
-              "Queued",
-              "Processing",
-              "Running",
-              "Canceled",
-              "Failed",
-              "Finished"
-            ],
+            "enum": ["Queued", "Processing", "Running", "Canceled", "Failed", "Finished"],
             "type": "string"
           },
           "timeFrom": {
@@ -2172,10 +2064,7 @@
           },
           "timeValidity": {
             "description": "Expiration",
-            "enum": [
-              "DAY",
-              "GTC"
-            ],
+            "enum": ["DAY", "GTC"],
             "example": "DAY",
             "type": "string"
           }
@@ -2198,10 +2087,7 @@
           },
           "timeValidity": {
             "description": "Expiration",
-            "enum": [
-              "DAY",
-              "GTC"
-            ],
+            "enum": ["DAY", "GTC"],
             "example": "DAY",
             "type": "string"
           }
