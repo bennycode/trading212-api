@@ -33,13 +33,6 @@ export interface Account {
     id?: number;
 }
 
-/**
- * Check if a given object implements the Account interface.
- */
-export function instanceOfAccount(value: object): value is Account {
-    return true;
-}
-
 export function AccountFromJSON(json: any): Account {
     return AccountFromJSONTyped(json, false);
 }

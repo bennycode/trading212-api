@@ -62,13 +62,6 @@ export const TaxNameEnum = {
 export type TaxNameEnum = typeof TaxNameEnum[keyof typeof TaxNameEnum];
 
 
-/**
- * Check if a given object implements the Tax interface.
- */
-export function instanceOfTax(value: object): value is Tax {
-    return true;
-}
-
 export function TaxFromJSON(json: any): Tax {
     return TaxFromJSONTyped(json, false);
 }

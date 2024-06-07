@@ -48,14 +48,6 @@ export const TimeEventTypeEnum = {
 } as const;
 export type TimeEventTypeEnum = typeof TimeEventTypeEnum[keyof typeof TimeEventTypeEnum];
 
-
-/**
- * Check if a given object implements the TimeEvent interface.
- */
-export function instanceOfTimeEvent(value: object): value is TimeEvent {
-    return true;
-}
-
 export function TimeEventFromJSON(json: any): TimeEvent {
     return TimeEventFromJSONTyped(json, false);
 }
