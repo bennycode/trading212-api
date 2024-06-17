@@ -30,7 +30,7 @@
     "dist",
     "!dist/**/*.test.*"
   ],
-  "homepage": "https://www.npmjs.com/package/trading212-api",
+  "homepage": "https://bennycode.com/trading212-api",
   "keywords": [],
   "license": "UNLICENSED",
   "main": "dist/index.js",
