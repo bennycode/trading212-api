@@ -1,4 +1,4 @@
-import {AxiosInstance} from 'axios';
+import type {AxiosInstance} from 'axios';
 import {z} from 'zod';
 
 const MetadataExchangeSchema = z.object({
