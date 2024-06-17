@@ -11,6 +11,8 @@ const AccountCashSchema = z.object({
   total: z.number(),
 });
 
+const AccountInfoSchema = z.object({currencyCode: z.string(), id: z.number()});
+
 export class AccountAPI {
   static readonly URL = {
     CASH: '/account/cash',
@@ -23,5 +25,11 @@ export class AccountAPI {
     const resource = AccountAPI.URL.CASH;
     const response = await this.apiClient.get(resource);
     return AccountCashSchema.parse(response.data);
+  }
+
+  async getInfo() {
+    const resource = AccountAPI.URL.INFO;
+    const response = await this.apiClient.get(resource);
+    return AccountInfoSchema.parse(response.data);
   }
 }

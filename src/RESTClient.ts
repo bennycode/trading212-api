@@ -9,9 +9,10 @@ import type {
 import axios, {isAxiosError} from 'axios';
 import axiosRetry from 'axios-retry';
 import {AccountAPI} from './equity/account/AccountAPI.js';
+import {MetadataAPI} from './equity/metadata/MetadataAPI.js';
 
 /**
- * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states.
+ * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
  */
 export class RESTClient {
   get defaults(): AxiosDefaults {
@@ -27,6 +28,7 @@ export class RESTClient {
 
   // Resources
   readonly account: AccountAPI;
+  readonly metadata: MetadataAPI;
 
   private readonly httpClient: AxiosInstance;
 
@@ -73,5 +75,6 @@ export class RESTClient {
 
     // Setup resources
     this.account = new AccountAPI(this.httpClient);
+    this.metadata = new MetadataAPI(this.httpClient);
   }
 }
