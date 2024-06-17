@@ -1,12 +1,12 @@
-import axios, {
+import type {
   AxiosDefaults,
   AxiosInterceptorManager,
   AxiosRequestConfig,
   AxiosResponse,
   AxiosInstance,
   AxiosError,
-  isAxiosError,
 } from 'axios';
+import axios, {isAxiosError} from 'axios';
 import axiosRetry from 'axios-retry';
 import {AccountAPI} from './equity/account/AccountAPI.js';
 
