@@ -1,4 +1,11 @@
 {
   "extends": "@tstv/eslint-config",
-  "ignorePatterns": ["docs", "vitest.config.ts"]
+  "rules": {
+    "import/no-commonjs": "off",
+    "import/no-duplicates": "off"
+  },
+  "ignorePatterns": [
+    "docs",
+    "vitest.config.ts"
+  ]
 }

@@ -2,6 +2,11 @@
   "bugs": {
     "url": "https://github.com/bennycode/trading212-api/issues"
   },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "axios-retry": "^4.4.0",
+    "zod": "^3.23.8"
+  },
   "description": "",
   "devDependencies": {
     "@evilmartians/lefthook": "^1.6.15",
@@ -11,6 +16,7 @@
     "@types/node": "^20.14.2",
     "@vitest/coverage-v8": "^1.6.0",
     "cross-env": "^7.0.3",
+    "dotenv-defaults": "^5.0.2",
     "eslint": "^8.57.0",
     "generate-changelog": "^1.8.0",
     "prettier": "^3.3.1",
@@ -41,6 +47,7 @@
     "check:lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern .",
     "clean": "rimraf coverage dist docs",
     "commit": "npm run fix && git commit -am \"chore: Generated release files\"",
+    "demo:account": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/account.ts",
     "deploy": "exit 0",
     "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",
     "dist": "npm run clean && npm run build",
