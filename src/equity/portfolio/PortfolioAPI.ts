@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {AxiosInstance} from 'axios';
+import type {AxiosInstance} from 'axios';
 
 const PortfolioOpenPositionSchema = z.object({
   averagePrice: z.number(),
