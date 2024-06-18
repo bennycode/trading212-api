@@ -48,6 +48,7 @@
     "clean": "rimraf coverage dist docs",
     "commit": "npm run fix && git commit -am \"chore: Generated release files\"",
     "demo:account": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/account.ts",
+    "demo:history": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/history.ts",
     "demo:metadata": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/metadata.ts",
     "demo:portfolio": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/portfolio.ts",
     "deploy": "exit 0",

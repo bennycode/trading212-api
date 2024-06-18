@@ -1,5 +1,6 @@
 import type {AxiosInstance} from 'axios';
 import {z} from 'zod';
+import {INSTRUMENT_TYPE} from '../union.js';
 
 const MetadataExchangeSchema = z.object({
   id: z.number(),
@@ -22,18 +23,7 @@ const MetadataInstrumentSchema = z.object({
   name: z.string(),
   shortname: z.union([z.string(), z.undefined()]),
   ticker: z.string(),
-  type: z.union([
-    z.literal('CORPACT'),
-    z.literal('CRYPTO'),
-    z.literal('CRYPTOCURRENCY'),
-    z.literal('CVR'),
-    z.literal('ETF'),
-    z.literal('FOREX'),
-    z.literal('FUTURES'),
-    z.literal('INDEX'),
-    z.literal('STOCK'),
-    z.literal('WARRANT'),
-  ]),
+  type: INSTRUMENT_TYPE,
   workingScheduleId: z.number(),
 });
 

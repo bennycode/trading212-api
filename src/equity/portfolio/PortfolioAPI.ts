@@ -1,17 +1,11 @@
 import {z} from 'zod';
 import type {AxiosInstance} from 'axios';
+import {DEVICE} from '../union.js';
 
 const PortfolioOpenPositionSchema = z.object({
   averagePrice: z.number(),
   currentPrice: z.number(),
-  frontend: z.union([
-    z.literal('ANDROID'),
-    z.literal('API'),
-    z.literal('AUTOINVEST'),
-    z.literal('IOS'),
-    z.literal('SYSTEM'),
-    z.literal('WEB'),
-  ]),
+  frontend: DEVICE,
   fxPpl: z.union([z.number(), z.null()]),
   initialFillDate: z.string().datetime({offset: true}),
   maxBuy: z.number(),

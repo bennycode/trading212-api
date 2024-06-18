@@ -11,6 +11,7 @@ import axiosRetry from 'axios-retry';
 import {AccountAPI} from './equity/account/AccountAPI.js';
 import {MetadataAPI} from './equity/metadata/MetadataAPI.js';
 import {PortfolioAPI} from './equity/portfolio/PortfolioAPI.js';
+import {HistoryAPI} from './equity/history/HistoryAPI.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
@@ -29,6 +30,7 @@ export class RESTClient {
 
   // Resources
   readonly account: AccountAPI;
+  readonly history: HistoryAPI;
   readonly metadata: MetadataAPI;
   readonly portfolio: PortfolioAPI;
 
@@ -77,6 +79,7 @@ export class RESTClient {
 
     // Setup resources
     this.account = new AccountAPI(this.httpClient);
+    this.history = new HistoryAPI(this.httpClient);
     this.metadata = new MetadataAPI(this.httpClient);
     this.portfolio = new PortfolioAPI(this.httpClient);
   }
