@@ -6,7 +6,7 @@
 
 ## Motivation
 
-This Trading 212 API can be used with TypeScript and comes with many useful features such as automatic reconnects and response validation.
+This [Trading 212](https://www.trading212.com/) API can be used with TypeScript and comes with many useful features such as automatic reconnects and response validation.
 
 ## Features
 
@@ -16,6 +16,10 @@ This Trading 212 API can be used with TypeScript and comes with many useful feat
 - ✅ **Reliable.** Follows [semantic versioning][3]. Get notified about breaking changes.
 - ✅ **Robust.** Automatic requests retries are built-in. No problems if your Wi-Fi is gone.
 - ✅ **Typed.** Source code is 100% TypeScript. No need to install external typings.
+
+## Internals
+
+This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod).
 
 ## Resources
 
