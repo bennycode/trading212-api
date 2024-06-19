@@ -2,7 +2,7 @@ import type {AxiosInstance} from 'axios';
 import {URLSearchParams} from 'node:url';
 import {z} from 'zod';
 import {getPageGenerator} from '../../pagination/getPageGenerator.js';
-import {DEVICE, ORDER_TYPE, STATUS, TAX_NAME, TIME_VALIDITY} from '../union.js';
+import {DEVICE, DIVIDEND_TYPE, ORDER_TYPE, STATUS, TAX_NAME, TIME_VALIDITY} from '../union.js';
 
 const HistoryDividensSchema = z.object({
   amount: z.number(),
@@ -12,7 +12,7 @@ const HistoryDividensSchema = z.object({
   quantity: z.number(),
   reference: z.string(),
   ticker: z.string(),
-  type: z.string(),
+  type: DIVIDEND_TYPE,
 });
 
 const HistoryOrderDataSchema = z.object({
@@ -25,11 +25,11 @@ const HistoryOrderDataSchema = z.object({
   fillPrice: z.union([z.number(), z.null()]),
   fillResult: z.union([z.number(), z.null()]),
   fillType: z.union([z.string(), z.null()]),
-  filledQuantity: z.number(),
+  filledQuantity: z.union([z.number(), z.null()]),
   filledValue: z.union([z.number(), z.null()]),
   id: z.number(),
   limitPrice: z.union([z.number(), z.null()]),
-  orderedQuantity: z.number(),
+  orderedQuantity: z.union([z.number(), z.null()]),
   orderedValue: z.union([z.number(), z.null()]),
   parentOrder: z.number(),
   status: STATUS,
@@ -57,20 +57,24 @@ export class HistoryAPI {
 
   constructor(private readonly apiClient: AxiosInstance) {}
 
-  async *getOrderData(ticker: string) {
-    const params = new URLSearchParams({
-      ticker,
-    });
+  async *getOrderData(ticker?: string) {
+    const params = ticker
+      ? new URLSearchParams({
+          ticker,
+        })
+      : new URLSearchParams();
     const generator = getPageGenerator(this.apiClient, HistoryAPI.URL.ORDERS, params, HistoryOrderDataSchema);
     for await (const data of generator) {
       yield data;
     }
   }
 
-  async *getPaidOutDividends(ticker: string) {
-    const params = new URLSearchParams({
-      ticker,
-    });
+  async *getPaidOutDividends(ticker?: string) {
+    const params = ticker
+      ? new URLSearchParams({
+          ticker,
+        })
+      : new URLSearchParams();
     const generator = getPageGenerator(this.apiClient, HistoryAPI.URL.DIVIDENDS, params, HistoryDividensSchema);
     for await (const data of generator) {
       yield data;

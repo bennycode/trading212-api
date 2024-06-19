@@ -9,6 +9,8 @@ export const DEVICE = z.union([
   z.literal('WEB'),
 ]);
 
+export const DIVIDEND_TYPE = z.literal('DIVIDEND');
+
 export const INSTRUMENT_TYPE = z.union([
   z.literal('CORPACT'),
   z.literal('CRYPTO'),
