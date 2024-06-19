@@ -2,6 +2,7 @@ import type {AxiosInstance} from 'axios';
 import {URLSearchParams} from 'node:url';
 import {z} from 'zod';
 import {DEVICE, STATUS, TAX_NAME, TIME_VALIDITY, ORDER_TYPE} from '../union.js';
+import {createPaginatedResponseSchema} from '../../validation/createPaginatedResponseSchema.js';
 
 const HistoryOrderDataSchema = z.object({
   dateCreated: z.string().datetime({offset: true}),
@@ -35,10 +36,7 @@ const HistoryOrderDataSchema = z.object({
   type: ORDER_TYPE,
 });
 
-const HistoryOrderDataPageSchema = z.object({
-  items: z.array(HistoryOrderDataSchema),
-  nextPagePath: z.union([z.string(), z.null()]),
-});
+const HistoryOrderDataPageSchema = createPaginatedResponseSchema(HistoryOrderDataSchema);
 
 export class HistoryAPI {
   static readonly URL = {
