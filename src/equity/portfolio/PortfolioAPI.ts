@@ -21,7 +21,7 @@ export type PortfolioOpenPosition = z.infer<typeof PortfolioOpenPositionSchema>;
 
 export class PortfolioAPI {
   static readonly URL = {
-    PORTFOLIO: '/portfolio',
+    PORTFOLIO: '/equity/portfolio',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}

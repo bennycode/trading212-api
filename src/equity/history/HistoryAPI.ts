@@ -1,8 +1,19 @@
 import type {AxiosInstance} from 'axios';
 import {URLSearchParams} from 'node:url';
 import {z} from 'zod';
-import {DEVICE, STATUS, TAX_NAME, TIME_VALIDITY, ORDER_TYPE} from '../union.js';
-import {createPaginatedResponseSchema} from '../../validation/createPaginatedResponseSchema.js';
+import {getPageGenerator} from '../../pagination/getPageGenerator.js';
+import {DEVICE, ORDER_TYPE, STATUS, TAX_NAME, TIME_VALIDITY} from '../union.js';
+
+const HistoryDividensSchema = z.object({
+  amount: z.number(),
+  amountInEuro: z.number(),
+  grossAmountPerShare: z.number(),
+  paidOn: z.string().datetime({offset: true}),
+  quantity: z.number(),
+  reference: z.string(),
+  ticker: z.string(),
+  type: z.string(),
+});
 
 const HistoryOrderDataSchema = z.object({
   dateCreated: z.string().datetime({offset: true}),
@@ -36,42 +47,33 @@ const HistoryOrderDataSchema = z.object({
   type: ORDER_TYPE,
 });
 
-const HistoryOrderDataPageSchema = createPaginatedResponseSchema(HistoryOrderDataSchema);
-
 export class HistoryAPI {
   static readonly URL = {
-    EXPORTS: '/history/exports',
-    INSTRUMENTS: '/history/dividends',
-    ORDERS: '/history/orders',
-    TRANSACTIONS: '/history/transactions',
+    DIVIDENDS: '/history/dividends',
+    EXPORTS: '/equity/history/exports',
+    ORDERS: '/equity/history/orders',
+    TRANSACTIONS: '/equity/history/transactions',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}
 
   async *getOrderData(ticker: string) {
-    let cursor: number = 0;
-    while (cursor !== -1) {
-      // Arrange
-      const params = new URLSearchParams({
-        cursor: `${cursor}`,
-        limit: '50',
-        ticker,
-      });
+    const params = new URLSearchParams({
+      ticker,
+    });
+    const generator = getPageGenerator(this.apiClient, HistoryAPI.URL.ORDERS, params, HistoryOrderDataSchema);
+    for await (const data of generator) {
+      yield data;
+    }
+  }
 
-      // Act
-      const response = await this.apiClient.get(`${HistoryAPI.URL.ORDERS}?${params.toString()}`);
-      const validated = HistoryOrderDataPageSchema.parse(response.data);
-
-      for (const item of validated.items) {
-        yield item;
-      }
-
-      // Update
-      if (!validated.nextPagePath) {
-        cursor = -1;
-      } else {
-        cursor += 1;
-      }
+  async *getPaidOutDividends(ticker: string) {
+    const params = new URLSearchParams({
+      ticker,
+    });
+    const generator = getPageGenerator(this.apiClient, HistoryAPI.URL.DIVIDENDS, params, HistoryDividensSchema);
+    for await (const data of generator) {
+      yield data;
     }
   }
 }

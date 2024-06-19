@@ -29,8 +29,8 @@ const MetadataInstrumentSchema = z.object({
 
 export class MetadataAPI {
   static readonly URL = {
-    EXCHANGES: '/metadata/exchanges',
-    INSTRUMENTS: '/metadata/instruments',
+    EXCHANGES: '/equity/metadata/exchanges',
+    INSTRUMENTS: '/equity/metadata/instruments',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}
