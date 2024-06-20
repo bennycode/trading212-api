@@ -71,9 +71,24 @@ export class RESTClient {
         // Abort retry
         return false;
       },
-      retryDelay: retryCount => {
-        // Linear retry
-        return retryCount * 1_000;
+      retryDelay: (retryCount: number, error: AxiosError) => {
+        const url = error.config?.url;
+        switch (url) {
+          case AccountAPI.URL.CASH:
+            return 2_000;
+          case PortfolioAPI.URL.PORTFOLIO:
+            return 5_000;
+          case AccountAPI.URL.INFO:
+          case MetadataAPI.URL.EXCHANGES:
+            return 30_000;
+          case MetadataAPI.URL.INSTRUMENTS:
+            return 50_000;
+          case HistoryAPI.URL.DIVIDENDS:
+          case HistoryAPI.URL.ORDERS:
+            return 60_000;
+          default:
+            return retryCount * 1_000;
+        }
       },
     });
 
