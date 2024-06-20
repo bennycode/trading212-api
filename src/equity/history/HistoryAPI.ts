@@ -20,12 +20,25 @@ const ExportSchema = z.object({
     includeOrders: z.boolean(),
     includeTransactions: z.boolean(),
   }),
-  downloadLink: z.string(),
+  downloadLink: z.union([z.string(), z.null()]),
   reportId: z.number(),
   status: EXPORT_STATUS,
   timeFrom: z.string().datetime({offset: true}),
   timeTo: z.string().datetime({offset: true}),
 });
+
+export const RequestExportSchema = z.object({
+  dataIncluded: z.object({
+    includeDividends: z.boolean(),
+    includeInterest: z.boolean(),
+    includeOrders: z.boolean(),
+    includeTransactions: z.boolean(),
+  }),
+  timeFrom: z.string().datetime({offset: true}),
+  timeTo: z.string().datetime({offset: true}),
+});
+
+export const RequestExportResponseSchema = z.object({reportId: z.number()});
 
 const HistoryDividensSchema = z.object({
   amount: z.number(),
@@ -110,18 +123,9 @@ export class HistoryAPI {
     return z.array(ExportSchema).parse(response.data);
   }
 
-  async requestExport() {
+  async requestExport(request: z.infer<typeof RequestExportSchema>) {
     const resource = HistoryAPI.URL.EXPORTS;
-    const response = await this.apiClient.post(resource, {
-      dataIncluded: {
-        includeDividends: true,
-        includeInterest: true,
-        includeOrders: true,
-        includeTransactions: true,
-      },
-      timeFrom: '2019-08-24T14:15:22Z',
-      timeTo: '2019-08-24T14:15:22Z',
-    });
-    return z.array(ExportSchema).parse(response.data);
+    const response = await this.apiClient.post(resource, request);
+    return RequestExportResponseSchema.parse(response.data);
   }
 }
