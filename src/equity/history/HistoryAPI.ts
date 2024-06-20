@@ -2,7 +2,7 @@ import type {AxiosInstance} from 'axios';
 import {URLSearchParams} from 'node:url';
 import {z} from 'zod';
 import {getPageGenerator} from '../../pagination/getPageGenerator.js';
-import {DEVICE, DIVIDEND_TYPE, ORDER_TYPE, STATUS, TAX_NAME, TIME_VALIDITY} from '../union.js';
+import {DEVICE, DIVIDEND_TYPE, FILL_TYPE, ORDER_TYPE, STATUS, TAX_NAME, TIME_VALIDITY} from '../union.js';
 
 const HistoryDividensSchema = z.object({
   amount: z.number(),
@@ -24,7 +24,7 @@ const HistoryOrderDataSchema = z.object({
   fillId: z.union([z.number(), z.null()]),
   fillPrice: z.union([z.number(), z.null()]),
   fillResult: z.union([z.number(), z.null()]),
-  fillType: z.union([z.string(), z.null()]),
+  fillType: z.union([FILL_TYPE, z.null()]),
   filledQuantity: z.union([z.number(), z.null()]),
   filledValue: z.union([z.number(), z.null()]),
   id: z.number(),
@@ -43,7 +43,7 @@ const HistoryOrderDataSchema = z.object({
     })
   ),
   ticker: z.string(),
-  timeValidity: TIME_VALIDITY,
+  timeValidity: z.union([TIME_VALIDITY, z.null()]),
   type: ORDER_TYPE,
 });
 
