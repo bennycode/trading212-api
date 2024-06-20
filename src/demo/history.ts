@@ -11,3 +11,6 @@ const dividends = client.rest.history.getPaidOutDividends();
 for await (const data of dividends) {
   console.info(new Date().toISOString(), data);
 }
+
+const exports = await client.rest.history.getExports();
+console.info(new Date().toISOString(), exports);

@@ -2,7 +2,30 @@ import type {AxiosInstance} from 'axios';
 import {URLSearchParams} from 'node:url';
 import {z} from 'zod';
 import {getPageGenerator} from '../../pagination/getPageGenerator.js';
-import {DEVICE, DIVIDEND_TYPE, FILL_TYPE, ORDER_TYPE, STATUS, TAX_NAME, TIME_VALIDITY} from '../union.js';
+import {
+  DEVICE,
+  DIVIDEND_TYPE,
+  EXPORT_STATUS,
+  FILL_TYPE,
+  ORDER_TYPE,
+  STATUS,
+  TAX_NAME,
+  TIME_VALIDITY,
+} from '../union.js';
+
+const ExportSchema = z.object({
+  dataIncluded: z.object({
+    includeDividends: z.boolean(),
+    includeInterest: z.boolean(),
+    includeOrders: z.boolean(),
+    includeTransactions: z.boolean(),
+  }),
+  downloadLink: z.string(),
+  reportId: z.number(),
+  status: EXPORT_STATUS,
+  timeFrom: z.string().datetime({offset: true}),
+  timeTo: z.string().datetime({offset: true}),
+});
 
 const HistoryDividensSchema = z.object({
   amount: z.number(),
@@ -50,9 +73,9 @@ const HistoryOrderDataSchema = z.object({
 export class HistoryAPI {
   static readonly URL = {
     DIVIDENDS: '/history/dividends',
-    EXPORTS: '/equity/history/exports',
+    EXPORTS: '/history/exports',
     ORDERS: '/equity/history/orders',
-    TRANSACTIONS: '/equity/history/transactions',
+    TRANSACTIONS: '/history/transactions',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}
@@ -79,5 +102,26 @@ export class HistoryAPI {
     for await (const data of generator) {
       yield data;
     }
+  }
+
+  async getExports() {
+    const resource = HistoryAPI.URL.EXPORTS;
+    const response = await this.apiClient.get(resource);
+    return z.array(ExportSchema).parse(response.data);
+  }
+
+  async requestExport() {
+    const resource = HistoryAPI.URL.EXPORTS;
+    const response = await this.apiClient.post(resource, {
+      dataIncluded: {
+        includeDividends: true,
+        includeInterest: true,
+        includeOrders: true,
+        includeTransactions: true,
+      },
+      timeFrom: '2019-08-24T14:15:22Z',
+      timeTo: '2019-08-24T14:15:22Z',
+    });
+    return z.array(ExportSchema).parse(response.data);
   }
 }

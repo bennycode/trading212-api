@@ -61,6 +61,15 @@ export const DIVIDEND_TYPE = z.union([
   z.literal('TRUST_DISTRIBUTION'),
 ]);
 
+export const EXPORT_STATUS = z.union([
+  z.literal('Canceled'),
+  z.literal('Failed'),
+  z.literal('Finished'),
+  z.literal('Processing'),
+  z.literal('Queued'),
+  z.literal('Running'),
+]);
+
 export const FILL_TYPE = z.union([z.literal('TOTV'), z.literal('OTC')]);
 
 export const INSTRUMENT_TYPE = z.union([

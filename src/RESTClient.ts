@@ -84,6 +84,7 @@ export class RESTClient {
           case MetadataAPI.URL.INSTRUMENTS:
             return 50_000;
           case HistoryAPI.URL.DIVIDENDS:
+          case HistoryAPI.URL.EXPORTS:
           case HistoryAPI.URL.ORDERS:
             return 60_000;
           default:
