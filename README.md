@@ -25,8 +25,8 @@ This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. Yo
 
 ### Documentation
 
-- [Trading212 API Docs](https://t212public-api-docs.redoc.ly/)
-- [Reverse-Engineered Trading212’s Web APIs](https://haksoat.com/reverse-engineering-trading212/)
+- [Docs: Trading212 API](https://t212public-api-docs.redoc.ly/)
+- [Blog: Reverse-Engineered Trading212’s Web APIs](https://haksoat.com/reverse-engineering-trading212/)
 - [Forum: New Equity Trading API in Beta](https://community.trading212.com/t/61788)
 
 ### Tools
