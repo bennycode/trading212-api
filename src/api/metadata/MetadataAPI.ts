@@ -27,10 +27,13 @@ const MetadataInstrumentSchema = z.object({
   workingScheduleId: z.number(),
 });
 
+/**
+ * @see https://t212public-api-docs.redoc.ly/#tag/Instruments-Metadata
+ */
 export class MetadataAPI {
   static readonly URL = {
-    EXCHANGES: '/metadata/exchanges',
-    INSTRUMENTS: '/metadata/instruments',
+    EXCHANGES: '/api/v0/equity/metadata/exchanges',
+    INSTRUMENTS: '/api/v0/equity/metadata/instruments',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}

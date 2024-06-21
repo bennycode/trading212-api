@@ -8,6 +8,15 @@
 
 This [Trading 212](https://www.trading212.com/) API can be used with TypeScript and comes with many useful features such as automatic reconnects and response validation.
 
+## Implemented Endpoints
+
+- [x] [Instruments Metadata](./src/api/metadata/MetadataAPI.ts)
+- [ ] Pies
+- [ ] Equity Orders
+- [x] [Account Data](./src/api/account/AccountAPI.ts)
+- [x] [Personal Portfolio](./src/api/portfolio/PortfolioAPI.ts)
+- [x] [Historical items](./src/api/history/HistoryAPI.ts)
+
 ## Features
 
 - ✅ **Documented.** Get started with [demo scripts][1] and [generated documentation][2].

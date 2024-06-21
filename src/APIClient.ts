@@ -6,8 +6,8 @@ import {RESTClient} from './RESTClient.js';
 export class APIClient {
   readonly rest: RESTClient;
 
-  static URL_DEMO = 'https://demo.trading212.com/api/v0/equity/';
-  static URL_LIVE = 'https://live.trading212.com/api/v0/equity/';
+  static URL_DEMO = 'https://demo.trading212.com';
+  static URL_LIVE = 'https://live.trading212.com';
 
   constructor(
     private readonly baseUrl: string,

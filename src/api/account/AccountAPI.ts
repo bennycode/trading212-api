@@ -13,10 +13,13 @@ const AccountCashSchema = z.object({
 
 const AccountInfoSchema = z.object({currencyCode: z.string(), id: z.number()});
 
+/**
+ * @see https://t212public-api-docs.redoc.ly/#tag/Account-Data
+ */
 export class AccountAPI {
   static readonly URL = {
-    CASH: '/account/cash',
-    INFO: '/account/info',
+    CASH: '/api/v0/equity/account/cash',
+    INFO: '/api/v0/equity/account/info',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}

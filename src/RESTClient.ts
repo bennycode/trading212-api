@@ -8,10 +8,10 @@ import type {
 } from 'axios';
 import axios, {isAxiosError} from 'axios';
 import axiosRetry from 'axios-retry';
-import {AccountAPI} from './equity/account/AccountAPI.js';
-import {MetadataAPI} from './equity/metadata/MetadataAPI.js';
-import {PortfolioAPI} from './equity/portfolio/PortfolioAPI.js';
-import {HistoryAPI} from './equity/history/HistoryAPI.js';
+import {AccountAPI} from './api/account/AccountAPI.js';
+import {MetadataAPI} from './api/metadata/MetadataAPI.js';
+import {PortfolioAPI} from './api/portfolio/PortfolioAPI.js';
+import {HistoryAPI} from './api/history/HistoryAPI.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
@@ -71,9 +71,29 @@ export class RESTClient {
         // Abort retry
         return false;
       },
-      retryDelay: retryCount => {
-        // Linear retry
-        return retryCount * 1_000;
+      retryDelay: (retryCount: number, error: AxiosError) => {
+        const url = error.config?.url;
+        const method = error.config?.method;
+
+        switch (url) {
+          case AccountAPI.URL.CASH:
+            return 2_000;
+          case PortfolioAPI.URL.PORTFOLIO:
+            return 5_000;
+          case AccountAPI.URL.INFO:
+          case MetadataAPI.URL.EXCHANGES:
+            return 30_000;
+          case MetadataAPI.URL.INSTRUMENTS:
+            return 50_000;
+          case HistoryAPI.URL.EXPORTS:
+            if (method === 'post') return 30_000;
+            return 60_000;
+          case HistoryAPI.URL.DIVIDENDS:
+          case HistoryAPI.URL.ORDERS:
+            return 60_000;
+          default:
+            return retryCount * 1_000;
+        }
       },
     });
 
