@@ -19,6 +19,9 @@ const PortfolioOpenPositionSchema = z.object({
 
 export type PortfolioOpenPosition = z.infer<typeof PortfolioOpenPositionSchema>;
 
+/**
+ * @see https://t212public-api-docs.redoc.ly/#tag/Personal-Portfolio
+ */
 export class PortfolioAPI {
   static readonly URL = {
     PORTFOLIO: '/api/v0/equity/portfolio',

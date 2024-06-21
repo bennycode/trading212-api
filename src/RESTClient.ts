@@ -8,10 +8,10 @@ import type {
 } from 'axios';
 import axios, {isAxiosError} from 'axios';
 import axiosRetry from 'axios-retry';
-import {AccountAPI} from './equity/account/AccountAPI.js';
-import {MetadataAPI} from './equity/metadata/MetadataAPI.js';
-import {PortfolioAPI} from './equity/portfolio/PortfolioAPI.js';
-import {HistoryAPI} from './equity/history/HistoryAPI.js';
+import {AccountAPI} from './api/account/AccountAPI.js';
+import {MetadataAPI} from './api/metadata/MetadataAPI.js';
+import {PortfolioAPI} from './api/portfolio/PortfolioAPI.js';
+import {HistoryAPI} from './api/history/HistoryAPI.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.

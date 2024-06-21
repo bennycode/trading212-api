@@ -91,6 +91,9 @@ const HistoryOrderDataSchema = z.object({
   type: ORDER_TYPE,
 });
 
+/**
+ * @see https://t212public-api-docs.redoc.ly/#tag/Historical-items
+ */
 export class HistoryAPI {
   static readonly URL = {
     DIVIDENDS: '/api/v0/history/dividends',

@@ -13,6 +13,9 @@ const AccountCashSchema = z.object({
 
 const AccountInfoSchema = z.object({currencyCode: z.string(), id: z.number()});
 
+/**
+ * @see https://t212public-api-docs.redoc.ly/#tag/Account-Data
+ */
 export class AccountAPI {
   static readonly URL = {
     CASH: '/api/v0/equity/account/cash',

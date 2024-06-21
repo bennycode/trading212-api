@@ -27,6 +27,9 @@ const MetadataInstrumentSchema = z.object({
   workingScheduleId: z.number(),
 });
 
+/**
+ * @see https://t212public-api-docs.redoc.ly/#tag/Instruments-Metadata
+ */
 export class MetadataAPI {
   static readonly URL = {
     EXCHANGES: '/api/v0/equity/metadata/exchanges',
