@@ -8,6 +8,7 @@ export class APIClient {
 
   static URL_DEMO = 'https://demo.trading212.com';
   static URL_LIVE = 'https://live.trading212.com';
+  static URL_TEST = 'https://fake-test-url.com';
 
   constructor(
     private readonly baseUrl: string,
