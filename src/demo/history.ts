@@ -26,3 +26,8 @@ console.info(new Date().toISOString(), exportRequest);
 
 const exports = await client.rest.history.getExports();
 console.info(new Date().toISOString(), exports);
+
+const transactions = client.rest.history.getTransactions();
+for await (const data of transactions) {
+  console.info(new Date().toISOString(), data);
+}

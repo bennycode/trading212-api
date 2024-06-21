@@ -118,3 +118,10 @@ export const TAX_NAME = z.union([
 ]);
 
 export const TIME_VALIDITY = z.union([z.literal('DAY'), z.literal('GTC')]);
+
+export const TRANSACTION_TYPE = z.union([
+  z.literal('DEPOSIT'),
+  z.literal('FEE'),
+  z.literal('TRANSFER'),
+  z.literal('WITHDRAW'),
+]);

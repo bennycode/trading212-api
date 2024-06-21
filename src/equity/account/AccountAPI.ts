@@ -15,8 +15,8 @@ const AccountInfoSchema = z.object({currencyCode: z.string(), id: z.number()});
 
 export class AccountAPI {
   static readonly URL = {
-    CASH: '/equity/account/cash',
-    INFO: '/equity/account/info',
+    CASH: '/api/v0/equity/account/cash',
+    INFO: '/api/v0/equity/account/info',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}

@@ -11,6 +11,7 @@ import {
   STATUS,
   TAX_NAME,
   TIME_VALIDITY,
+  TRANSACTION_TYPE,
 } from '../union.js';
 
 const ExportSchema = z.object({
@@ -39,6 +40,13 @@ export const RequestExportSchema = z.object({
 });
 
 export const RequestExportResponseSchema = z.object({reportId: z.number()});
+
+export const TransactionSchema = z.object({
+  amount: z.number(),
+  dateTime: z.string().datetime({offset: true}),
+  reference: z.string(),
+  type: TRANSACTION_TYPE,
+});
 
 const HistoryDividensSchema = z.object({
   amount: z.number(),
@@ -85,36 +93,36 @@ const HistoryOrderDataSchema = z.object({
 
 export class HistoryAPI {
   static readonly URL = {
-    DIVIDENDS: '/history/dividends',
-    EXPORTS: '/history/exports',
-    ORDERS: '/equity/history/orders',
-    TRANSACTIONS: '/history/transactions',
+    DIVIDENDS: '/api/v0/history/dividends',
+    EXPORTS: '/api/v0/history/exports',
+    ORDERS: '/api/v0/equity/history/orders',
+    TRANSACTIONS: '/api/v0/history/transactions',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}
 
-  async *getOrderData(ticker?: string) {
-    const params = ticker
-      ? new URLSearchParams({
-          ticker,
-        })
-      : new URLSearchParams();
-    const generator = getPageGenerator(this.apiClient, HistoryAPI.URL.ORDERS, params, HistoryOrderDataSchema);
-    for await (const data of generator) {
-      yield data;
-    }
+  private paginate<ItemType extends z.ZodTypeAny>(itemSchema: ItemType, url: string, params?: URLSearchParams) {
+    return getPageGenerator(this.apiClient, itemSchema, url, params);
   }
 
-  async *getPaidOutDividends(ticker?: string) {
+  getOrderData(ticker?: string) {
     const params = ticker
       ? new URLSearchParams({
           ticker,
         })
       : new URLSearchParams();
-    const generator = getPageGenerator(this.apiClient, HistoryAPI.URL.DIVIDENDS, params, HistoryDividensSchema);
-    for await (const data of generator) {
-      yield data;
-    }
+    const resource = HistoryAPI.URL.ORDERS;
+    return this.paginate(HistoryOrderDataSchema, resource, params);
+  }
+
+  getPaidOutDividends(ticker?: string) {
+    const params = ticker
+      ? new URLSearchParams({
+          ticker,
+        })
+      : new URLSearchParams();
+    const resource = HistoryAPI.URL.DIVIDENDS;
+    return this.paginate(HistoryDividensSchema, resource, params);
   }
 
   async getExports() {
@@ -125,7 +133,17 @@ export class HistoryAPI {
 
   async requestExport(request: z.infer<typeof RequestExportSchema>) {
     const resource = HistoryAPI.URL.EXPORTS;
-    const response = await this.apiClient.post(resource, request);
+    const validated = RequestExportSchema.parse(request);
+    const response = await this.apiClient.post(resource, validated);
     return RequestExportResponseSchema.parse(response.data);
+  }
+
+  /**
+   * Note: This endpoint easily runs into states of 'InternalError'
+   * Example: 'https://live.trading212.com/api/v0/history/transactions?limit=50&cursor=c3e50994-7d6f-47c0-b3f9-40f8ba1733f6&time=2024-03-14T22:02:28.805Z'
+   */
+  getTransactions() {
+    const resource = HistoryAPI.URL.TRANSACTIONS;
+    return this.paginate(TransactionSchema, resource);
   }
 }

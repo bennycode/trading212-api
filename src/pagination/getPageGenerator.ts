@@ -10,19 +10,20 @@ function createPaginatedResponseSchema<ItemType extends z.ZodTypeAny>(itemSchema
 
 export async function* getPageGenerator<ItemType extends z.ZodTypeAny>(
   apiClient: AxiosInstance,
+  itemSchema: ItemType,
   url: string,
-  params: URLSearchParams,
-  itemSchema: ItemType
+  params: URLSearchParams = new URLSearchParams()
 ) {
-  let cursor: number = 0;
-  while (cursor !== -1) {
+  let nextPagePath: string | null = null;
+
+  do {
     // Extend params
     params.append('limit', '50');
-    params.append('cursor', `${cursor}`);
 
     // Make request
     const paginatedSchema = createPaginatedResponseSchema(itemSchema);
-    const response = await apiClient.get(`${url}?${params.toString()}`);
+    const resource = nextPagePath ? nextPagePath : `${url}?${params.toString()}`;
+    const response = await apiClient.get(resource);
     const validated = paginatedSchema.parse(response.data);
 
     for (const item of validated.items) {
@@ -30,10 +31,10 @@ export async function* getPageGenerator<ItemType extends z.ZodTypeAny>(
     }
 
     // The `includes('null')` quickfixes the following issue: https://community.trading212.com/t/61788/207
-    if (!validated.nextPagePath || validated.nextPagePath.includes('null')) {
-      cursor = -1;
+    if (validated.nextPagePath && !validated.nextPagePath.includes('null')) {
+      nextPagePath = validated.nextPagePath;
     } else {
-      cursor += 1;
+      nextPagePath = null;
     }
-  }
+  } while (nextPagePath);
 }
