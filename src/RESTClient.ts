@@ -73,6 +73,8 @@ export class RESTClient {
       },
       retryDelay: (retryCount: number, error: AxiosError) => {
         const url = error.config?.url;
+        const method = error.config?.method;
+
         switch (url) {
           case AccountAPI.URL.CASH:
             return 2_000;
@@ -83,8 +85,10 @@ export class RESTClient {
             return 30_000;
           case MetadataAPI.URL.INSTRUMENTS:
             return 50_000;
-          case HistoryAPI.URL.DIVIDENDS:
           case HistoryAPI.URL.EXPORTS:
+            if (method === 'post') return 30_000;
+            return 60_000;
+          case HistoryAPI.URL.DIVIDENDS:
           case HistoryAPI.URL.ORDERS:
             return 60_000;
           default:
