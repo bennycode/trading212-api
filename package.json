@@ -57,7 +57,7 @@
     "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",
     "dist": "npm run clean && npm run build",
     "docs": "npm run docs:build",
-    "docs:build": "typedoc src/index.ts",
+    "docs:build": "typedoc ./src/APIClient.ts",
     "fix": "npm run fix:format && npm run fix:lint",
     "fix:format": "npm run check:format -- --write",
     "fix:lint": "npm run check:lint -- --fix --quiet",
