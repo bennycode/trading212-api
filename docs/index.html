@@ -112,321 +112,196 @@
         <div class="tsd-page-title"><h2>trading212-api</h2></div>
         <div class="tsd-panel tsd-typography">
           <a
-            id="md:ts-node-starter"
+            id="md:trading-212-api-for-typescript"
             class="tsd-anchor"
           ></a>
-          <h1><a href="#md:ts-node-starter">ts-node-starter</a></h1>
+          <h1><a href="#md:trading-212-api-for-typescript">Trading 212 API for TypeScript</a></h1>
           <p>
-            The <code>ts-node-starter</code> scaffolding project is a
-            <a
-              href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository"
-              >template repository</a
-            >
-            which makes it easy for you to start a new Node.js project with TypeScript.
+            <img
+              src="https://img.shields.io/github/languages/top/bennycode/trading212-api"
+              alt="Language Details"
+            />
+            <img
+              src="https://img.shields.io/npm/l/trading212-api.svg"
+              alt="License"
+            />
+            <img
+              src="https://img.shields.io/npm/v/trading212-api.svg"
+              alt="Package Version"
+            />
           </p>
+          <hr />
+          <a
+            id="md:motivation"
+            class="tsd-anchor"
+          ></a>
+          <h2><a href="#md:motivation">Motivation</a></h2>
           <p>
-            Using this template, you can build <strong>standalone apps</strong>, <strong>libraries</strong> and/or
-            <strong>CLI tools</strong>. The <code>ts-node-starter</code> setup is configurable and comes with a lot of
-            features included.
+            This <a href="https://www.trading212.com/">Trading 212</a> API can be used with TypeScript and comes with
+            many useful features such as automatic reconnects and response validation.
           </p>
+          <a
+            id="md:implemented-endpoints"
+            class="tsd-anchor"
+          ></a>
+          <h2><a href="#md:implemented-endpoints">Implemented Endpoints</a></h2>
+          <ul>
+            <li>
+              <input
+                checked=""
+                disabled=""
+                type="checkbox"
+              />
+              <a href="https://t212public-api-docs.redoc.ly/#tag/Instruments-Metadata">Instruments Metadata</a>
+            </li>
+            <li>
+              <input
+                disabled=""
+                type="checkbox"
+              />
+              Pies
+            </li>
+            <li>
+              <input
+                checked=""
+                disabled=""
+                type="checkbox"
+              />
+              <a href="https://t212public-api-docs.redoc.ly/#tag/Equity-Orders">Equity Orders</a>
+            </li>
+            <li>
+              <input
+                checked=""
+                disabled=""
+                type="checkbox"
+              />
+              <a href="https://t212public-api-docs.redoc.ly/#tag/Account-Data">Account Data</a>
+            </li>
+            <li>
+              <input
+                checked=""
+                disabled=""
+                type="checkbox"
+              />
+              <a href="https://t212public-api-docs.redoc.ly/#tag/Personal-Portfolio">Personal Portfolio</a>
+            </li>
+            <li>
+              <input
+                checked=""
+                disabled=""
+                type="checkbox"
+              />
+              <a href="https://t212public-api-docs.redoc.ly/#tag/Historical-items">Historical items</a>
+            </li>
+          </ul>
           <a
             id="md:features"
             class="tsd-anchor"
           ></a>
           <h2><a href="#md:features">Features</a></h2>
-          <ol>
+          <ul>
             <li>
-              <strong>Changelog generation</strong> powered by
-              <a href="https://github.com/lob/generate-changelog">generate-changelog</a>
+              ✅ <strong>Documented.</strong> Get started with
+              <a href="https://github.com/bennycode/trading212-api/tree/main/src/demo">demo scripts</a> and
+              <a href="https://github.com/bennycode/trading212-api/tree/main/docs">generated documentation</a>.
+            </li>
+            <li>✅ <strong>Maintained.</strong> Automated security updates. No threats from outdated dependencies.</li>
+            <li>✅ <strong>Modern.</strong> HTTP client with Promise API. Don&#39;t lose yourself in callback hell.</li>
+            <li>
+              ✅ <strong>Reliable.</strong> Follows
+              <a href="https://docs.npmjs.com/about-semantic-versioning">semantic versioning</a>. Get notified about
+              breaking changes.
             </li>
             <li>
-              <strong>Automatic code &amp; config formatting</strong> powered by
-              <a href="https://github.com/evilmartians/lefthook">Lefthook</a>
+              ✅ <strong>Robust.</strong> Automatic requests retries are built-in. No problems if your Wi-Fi is gone.
             </li>
-            <li>
-              <strong>Automatic dependency updates</strong> powered by
-              <a
-                href="https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates"
-                >Dependabot</a
-              >
-            </li>
-            <li><strong>Config formatting</strong> powered by <a href="https://prettier.io/">Prettier</a></li>
-            <li><strong>Code linting</strong> powered by <a href="https://eslint.org/">ESLint</a></li>
-            <li>
-              <strong>Continuous integration</strong> powered by
-              <a href="https://docs.github.com/en/actions/using-workflows">GitHub Actions workflows</a>
-            </li>
-            <li><strong>Dependency management</strong> powered by <a href="https://www.npmjs.com/">npm</a></li>
-            <li><strong>Unit testing</strong> powered by <a href="https://vitest.dev/">Vitest</a></li>
-            <li>
-              <strong>Code coverage</strong> powered by <a href="https://v8.dev/blog/javascript-code-coverage">v8</a>
-            </li>
-            <li><strong>Code coverage reports</strong> powered by <a href="https://about.codecov.io/">Codecov</a></li>
-            <li><strong>Type checking</strong> powered by <a href="https://www.typescriptlang.org/">TypeScript</a></li>
-            <li>
-              <strong>Streamlined scripts</strong> powered by
-              <a href="https://conventionalscripts.org/">Conventional Scripts</a>
-            </li>
-            <li><strong>Documentation generation</strong> powered by <a href="https://typedoc.org/">TypeDoc</a></li>
-          </ol>
+            <li>✅ <strong>Tested.</strong> Unit test coverage to guarantee core functionaly.</li>
+            <li>✅ <strong>Typed.</strong> Source code is 100% TypeScript. No need to install external typings.</li>
+          </ul>
           <a
             id="md:usage"
             class="tsd-anchor"
           ></a>
           <h2><a href="#md:usage">Usage</a></h2>
           <a
-            id="md:make-it-your-own"
+            id="md:installation"
             class="tsd-anchor"
           ></a>
-          <h3><a href="#md:make-it-your-own">Make it your own</a></h3>
-          <ol>
-            <li>Replace all occurrences of &quot;bennycode&quot; with your own username (or organization name)</li>
-            <li>Replace all occurrences of &quot;ts-node-starter&quot; with your project name (or repository name)</li>
-            <li>Start writing your code in the <a href="./src">&quot;src&quot; directory</a></li>
-            <li>Run <code>npm install</code> and be happy! 😊</li>
-          </ol>
-          <a
-            id="md:build-a-standalone-app"
-            class="tsd-anchor"
-          ></a>
-          <h3><a href="#md:build-a-standalone-app">Build a standalone app</a></h3>
-          <p><strong>Source Code</strong></p>
-          <p>
-            If you just want to write and run a Node.js app, checkout
-            <a href="./src/start.ts">&quot;src/start.ts&quot;</a>.
-          </p>
-          <p><strong>References</strong></p>
-          <p>
-            You can start your application by executing <code>yarn start</code>. If you want to debug your code, run
-            <code>yarn debug</code> (<a
-              href="https://dev.to/typescripttv/debug-your-node-js-app-with-chrome-devtools-4c98"
-              >Debug Instructions</a
-            >).
-          </p>
-          <a
-            id="md:build-a-library"
-            class="tsd-anchor"
-          ></a>
-          <h3><a href="#md:build-a-library">Build a Library</a></h3>
-          <p><strong>Source Code</strong></p>
-          <p>
-            If you want to distribute your code as a Node.js library on <a href="https://www.npmjs.com/">npm</a>, you
-            can have a look at <a href="./src/index.ts">&quot;src/index.ts&quot;</a>. If you build a library, I
-            recommend to always ship an index file from where you export the code of your library for others.
-          </p>
-          <p><strong>References</strong></p>
-          <p>
-            In the <a href="./package.json">&quot;package.json&quot; file</a> you will also discover a &quot;main&quot;
-            property which defines the entry point to your library when it gets imported by other developers. The value
-            of the &quot;main&quot; property has to point to the transpiled JavaScript code.
-          </p>
-          <a
-            id="md:build-a-cli"
-            class="tsd-anchor"
-          ></a>
-          <h3><a href="#md:build-a-cli">Build a CLI</a></h3>
-          <p><strong>Source Code</strong></p>
-          <p>
-            If you want to build a CLI tool for Node.js, you can have a look at
-            <a href="./src/cli.ts">&quot;src/cli.ts&quot;</a>.
-          </p>
-          <p><strong>References</strong></p>
-          <p>
-            In the <a href="./package.json">&quot;package.json&quot; file</a> you will also discover a &quot;bin&quot;
-            property which defines the executable name of your tool and the entry point to its transpiled JavaScript
-            code.
-          </p>
-          <p>If you don&#39;t want to publish a CLI, simply remove the &quot;bin&quot; property and the CLI script.</p>
-          <a
-            id="md:conventions"
-            class="tsd-anchor"
-          ></a>
-          <h2><a href="#md:conventions">Conventions</a></h2>
-          <a
-            id="md:test-files"
-            class="tsd-anchor"
-          ></a>
-          <h3><a href="#md:test-files">Test Files</a></h3>
-          <p>
-            I recommend to colocate your test code with your source code by naming your test files
-            <code>*.test.ts</code>.
-          </p>
-          <a
-            id="md:changelog-generation"
-            class="tsd-anchor"
-          ></a>
-          <h3><a href="#md:changelog-generation">Changelog Generation</a></h3>
-          <p>
-            The automatic changelog generation is based on
-            <a href="https://sparkbox.com/foundry/semantic_commit_messages">Semantic Commit Messages</a>. Simply use the
-            suggested prefixes in your commit messages to make use of it. For example, if you commit a new feature use
-            the &quot;feat&quot; prefix:
-          </p>
-          <p><strong>Commit Message:</strong></p>
-          <blockquote>
-            <p>feat: My new feature</p>
-          </blockquote>
-          <p>
-            If you are introducing a breaking change, add an exclamation mark (<code>!</code>) after the type or scope
-            of your commit message:
-          </p>
-          <p><strong>Example:</strong></p>
-          <blockquote>
-            <p>refactoring!: Make file handlers asynchronous</p>
-          </blockquote>
-          <p>
-            This is as per
-            <a
-              href="https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with--to-draw-attention-to-breaking-change"
-              >breaking change definition</a
-            >
-            of Conventional Commits 1.0.0.
-          </p>
-          <a
-            id="md:troubleshooting"
-            class="tsd-anchor"
-          ></a>
-          <h2><a href="#md:troubleshooting">Troubleshooting</a></h2>
-          <p>
-            If you&#39;re having trouble with the Git pre-commit hook, then reinstall the hook using the following
-            command:
-          </p>
-          <pre><code class="language-bash"><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-2">lefthook</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-3">--force</span>
-</code><button>Copy</button></pre>
-          <p>Source: <a href="https://github.com/evilmartians/lefthook/wiki/Troubleshooting">Hooks don&#39;t run</a></p>
-          <a
-            id="md:updates"
-            class="tsd-anchor"
-          ></a>
-          <h2><a href="#md:updates">Updates</a></h2>
-          <p>
-            The dependencies of this boilerplate are updated regularly. If you prefer to update them yourself, you can
-            also run the following command:
-          </p>
-          <pre><code class="language-bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">update</span><span class="hl-1"> </span><span class="hl-3">--save</span>
+          <h3><a href="#md:installation">Installation</a></h3>
+          <p><strong>npm</strong></p>
+          <pre><code class="language-bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">trading212-api</span>
 </code><button>Copy</button></pre>
           <a
-            id="md:inspiring-templates"
+            id="md:rest-example"
             class="tsd-anchor"
           ></a>
-          <h2><a href="#md:inspiring-templates">Inspiring Templates</a></h2>
-          <p>Other inspiring Node.js templates:</p>
+          <h3><a href="#md:rest-example">REST Example</a></h3>
+          <p>
+            The <a href="https://github.com/bennycode/trading212-api/tree/main/src/demo">demo section</a> provides many
+            examples on how to use &quot;trading212-api&quot;. There is also an automatically generated
+            <a href="https://github.com/bennycode/trading212-api/tree/main/docs">API documentation</a>. For a quick
+            start, here is a simple example for a REST request:
+          </p>
+          <pre><code class="language-ts"><span class="hl-3">import</span><span class="hl-1"> {</span><span class="hl-4">APIClient</span><span class="hl-1">} </span><span class="hl-3">from</span><span class="hl-1"> </span><span class="hl-2">&#39;trading212-api&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">baseURL</span><span class="hl-1"> = </span><span class="hl-4">APIClient</span><span class="hl-1">.</span><span class="hl-6">URL_LIVE</span><span class="hl-1">;</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">APIClient</span><span class="hl-1">(</span><span class="hl-4">baseURL</span><span class="hl-1">, </span><span class="hl-2">&#39;apiKey&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">info</span><span class="hl-1"> = </span><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">client</span><span class="hl-1">.</span><span class="hl-4">rest</span><span class="hl-1">.</span><span class="hl-4">account</span><span class="hl-1">.</span><span class="hl-0">getInfo</span><span class="hl-1">();</span><br/><span class="hl-4">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-4">info</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+          <a
+            id="md:development"
+            class="tsd-anchor"
+          ></a>
+          <h3><a href="#md:development">Development</a></h3>
+          <p>
+            If cloning the project locally, you can also add a <code>.env</code> file to configure the API client (see
+            <a href="https://github.com/bennycode/trading212-api/blob/main/.env.defaults">.env.defaults</a>). This
+            allows you to run all demo scripts.
+          </p>
+          <p><strong>Example</strong></p>
+          <pre><code class="language-bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">demo:account</span>
+</code><button>Copy</button></pre>
+          <a
+            id="md:internals"
+            class="tsd-anchor"
+          ></a>
+          <h2><a href="#md:internals">Internals</a></h2>
+          <p>
+            This library utilizes <a href="https://github.com/axios/axios">axios</a> for HTTP calls. You can configure
+            the axios instance using <a href="https://axios-http.com/docs/interceptors">interceptors</a> if needed.
+            Retries are handled by <a href="https://github.com/softonic/axios-retry">axios-retry</a>, and payloads are
+            validated with <a href="https://github.com/colinhacks/zod">Zod</a>. Unit tests are implemented with
+            <a href="https://github.com/nock/nock">nock</a>.
+          </p>
+          <a
+            id="md:resources"
+            class="tsd-anchor"
+          ></a>
+          <h2><a href="#md:resources">Resources</a></h2>
+          <a
+            id="md:documentation"
+            class="tsd-anchor"
+          ></a>
+          <h3><a href="#md:documentation">Documentation</a></h3>
           <ul>
+            <li><a href="https://t212public-api-docs.redoc.ly/">Docs: Trading212 API</a></li>
+            <li><a href="https://community.trading212.com/t/61788">Forum: New Equity Trading API in Beta</a></li>
             <li>
-              <a href="https://github.com/JoshuaKGoldberg/create-typescript-app"
-                >https://github.com/JoshuaKGoldberg/create-typescript-app</a
+              <a href="https://haksoat.com/reverse-engineering-trading212/"
+                >Blog: Reverse-Engineered Trading212’s Web APIs</a
               >
             </li>
           </ul>
           <a
-            id="md:important-refactorings"
+            id="md:tools"
             class="tsd-anchor"
           ></a>
-          <h2><a href="#md:important-refactorings">Important Refactorings</a></h2>
-          <ol>
+          <h3><a href="#md:tools">Tools</a></h3>
+          <ul>
+            <li><a href="https://transform.tools/json-to-zod">JSON to Zod Schema</a></li>
+            <li><a href="https://openapi-generator.tech/docs/globals/">OpenAPI Generator: Global Properties</a></li>
             <li>
-              Replaced <a href="https://editorconfig.org/">EditorConfig</a> with
-              <a href="https://prettier.io/">Prettier</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/2e24f7be5f427c26d6cc8281438a6398a211b75c"
-                >2e24f7b</a
-              >)
+              <a href="https://openapi-generator.tech/docs/generators/typescript-fetch/#config-options"
+                >OpenAPI Generator: Config Options</a
+              >
             </li>
-            <li>
-              Replaced <a href="https://jasmine.github.io/">Jasmine</a> with <a href="https://jestjs.io/">Jest</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/41e9b42bb5b7ca364dbbabf1104955090003d1be"
-                >41e9b42</a
-              >)
-            </li>
-            <li>
-              Replaced
-              <a href="https://github.com/ahmadnassri/action-dependabot-auto-merge">action-dependabot-auto-merge</a>
-              with <a href="https://github.com/dependabot">Dependabot</a> &amp;
-              <a href="https://cli.github.com/">GitHub CLI</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/86d5696113c2fb4907a1666e25d1b72d698b06a5"
-                >86d5696</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://github.com/typicode/husky">husky</a> with
-              <a href="https://github.com/evilmartians/lefthook">Lefthook</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/9c4161509acf49e56042383c9ea340f68f248582"
-                >9c41615</a
-              >)
-            </li>
-            <li>
-              Replaced custom <a href="https://eslint.org/">ESLint</a> Config with a
-              <a href="https://eslint.org/docs/latest/developer-guide/shareable-configs">Shareable Config</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/eef59275e91f6f484f7a917fdd87b09318ebbad3"
-                >eef5927</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://www.npmjs.com/package/@types/jest">@types/jest</a> with
-              <a href="https://jestjs.io/docs/getting-started#type-definitions">@jest/globals</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/73c5bc246de79ca2cc805a8b61e42bec39cb97fd"
-                >73c5bc2</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://classic.yarnpkg.com/">Yarn 1</a> with
-              <a href="https://www.npmjs.com/">npm</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/153b726761db302fa3ba57ed1d71aabae01d8394"
-                >153b726</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://www.npmjs.com/package/pretty-quick">pretty-quick</a> with
-              <a href="https://prettier.io/">Prettier 3</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/7623ba894e6767d7da8ce5b8a1e2469639bcb027"
-                >7623ba8</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://jestjs.io/">Jest</a> with <a href="https://vitest.dev/">Vitest</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/662dddf92d418d0e1119a04d8f5fe807a7a566f0"
-                >662dddf</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://nodejs.org/api/modules.html">CommonJS</a> with
-              <a href="https://nodejs.org/api/esm.html">EcmaScript Modules</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/0cae631ca6457026919418ddb3a10f7858e9ad55"
-                >0cae631</a
-              >)
-            </li>
-            <li>
-              Replaced imports with <a href="https://vitest.dev/config/#globals">Vitest Globals</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/6b273c3c09552d5aa829f48987c1c1dcf7a93ce9"
-                >6b273c3</a
-              >)
-            </li>
-            <li>
-              Replaced <a href="https://github.com/TypeStrong/ts-node">ts-node</a> with
-              <a href="https://github.com/tapjs/tsimp">tsimp</a> (<a
-                href="https://github.com/bennycode/ts-node-starter/commit/bb74b2df59ecf41b3e0588df74ba2d4dcd830b44"
-                >5db7e0c</a
-              >)
-            </li>
-          </ol>
-          <a
-            id="md:contributors"
-            class="tsd-anchor"
-          ></a>
-          <h2><a href="#md:contributors">Contributors</a></h2>
-          <p>
-            <a href="https://stackexchange.com/users/203782/benny-neugebauer?tab=accounts"
-              ><img
-                src="https://stackexchange.com/users/flair/203782.png?theme=default"
-                alt="Benny Neugebauer on Stack Exchange"
-            /></a>
-          </p>
-          <p>
-            <a href="https://stackexchange.com/users/5282/lipis?tab=accounts"
-              ><img
-                src="https://stackexchange.com/users/flair/5282.png?theme=default"
-                alt="Panayiotis Lipiridis on Stack Exchange"
-            /></a>
-          </p>
+          </ul>
         </div>
       </div>
       <div class="col-sidebar">
@@ -610,10 +485,18 @@
               </h3>
             </summary>
             <div class="tsd-accordion-details">
-              <a href="#md:ts-node-starter"
-                ><span>ts-<wbr />node-<wbr />starter</span></a
+              <a href="#md:trading-212-api-for-typescript"
+                ><span>Trading 212 API for <wbr />Type<wbr />Script</span></a
               >
               <ul>
+                <li>
+                  <a href="#md:motivation"><span>Motivation</span></a>
+                </li>
+                <li>
+                  <a href="#md:implemented-endpoints"
+                    ><span>Implemented <wbr />Endpoints</span></a
+                  >
+                </li>
                 <li>
                   <a href="#md:features"><span>Features</span></a>
                 </li>
@@ -623,56 +506,33 @@
                 <li>
                   <ul>
                     <li>
-                      <a href="#md:make-it-your-own"><span>Make it your own</span></a>
+                      <a href="#md:installation"><span>Installation</span></a>
                     </li>
                     <li>
-                      <a href="#md:build-a-standalone-app"><span>Build a standalone app</span></a>
-                    </li>
-                    <li>
-                      <a href="#md:build-a-library"
-                        ><span>Build a <wbr />Library</span></a
+                      <a href="#md:rest-example"
+                        ><span>REST <wbr />Example</span></a
                       >
                     </li>
                     <li>
-                      <a href="#md:build-a-cli"><span>Build a CLI</span></a>
+                      <a href="#md:development"><span>Development</span></a>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#md:conventions"><span>Conventions</span></a>
+                  <a href="#md:internals"><span>Internals</span></a>
+                </li>
+                <li>
+                  <a href="#md:resources"><span>Resources</span></a>
                 </li>
                 <li>
                   <ul>
                     <li>
-                      <a href="#md:test-files"
-                        ><span>Test <wbr />Files</span></a
-                      >
+                      <a href="#md:documentation"><span>Documentation</span></a>
                     </li>
                     <li>
-                      <a href="#md:changelog-generation"
-                        ><span>Changelog <wbr />Generation</span></a
-                      >
+                      <a href="#md:tools"><span>Tools</span></a>
                     </li>
                   </ul>
-                </li>
-                <li>
-                  <a href="#md:troubleshooting"><span>Troubleshooting</span></a>
-                </li>
-                <li>
-                  <a href="#md:updates"><span>Updates</span></a>
-                </li>
-                <li>
-                  <a href="#md:inspiring-templates"
-                    ><span>Inspiring <wbr />Templates</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#md:important-refactorings"
-                    ><span>Important <wbr />Refactorings</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#md:contributors"><span>Contributors</span></a>
                 </li>
               </ul>
             </div>
