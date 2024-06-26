@@ -7,7 +7,7 @@ import transactions2 from '../../fixtures/api/v0/history/transactions/transactio
 describe('HistoryAPI', () => {
   describe('getTransactions', () => {
     it('retrieves paginated transactions', async () => {
-      const baseURL = APIClient.URL_TEST;
+      const baseURL = 'https://localhost';
       nock(baseURL)
         .persist()
         .get(HistoryAPI.URL.TRANSACTIONS)
@@ -15,8 +15,10 @@ describe('HistoryAPI', () => {
         .reply(uri => {
           if (uri === '/api/v0/history/transactions?limit=50') {
             return [200, JSON.stringify(transactions1)];
-          } else {
+          } else if (uri === transactions1.nextPagePath) {
             return [200, JSON.stringify(transactions2)];
+          } else {
+            return [404];
           }
         });
 
