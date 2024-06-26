@@ -1,0 +1,29 @@
+{
+  "instruments": [
+    {
+      "currentShare": 1,
+      "expectedShare": 1,
+      "issues": [],
+      "ownedQuantity": 8.3444584,
+      "result": {
+        "investedValue": 1000,
+        "result": 24.37,
+        "resultCoef": 0.0244,
+        "value": 1024.37
+      },
+      "ticker": "VWCEd_EQ"
+    }
+  ],
+  "settings": {
+    "creationDate": "2023-12-01T23:59:59.999+03:00",
+    "dividendCashAction": "REINVEST",
+    "endDate": "2024-12-01T23:59:59.999+03:00",
+    "goal": 13159,
+    "icon": "Coins",
+    "id": 1337,
+    "initialInvestment": 1000,
+    "instrumentShares": null,
+    "name": "World ETF",
+    "publicUrl": null
+  }
+}

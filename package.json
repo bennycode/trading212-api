@@ -52,6 +52,7 @@
     "demo:history": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/history.ts",
     "demo:metadata": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/metadata.ts",
     "demo:order": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/order.ts",
+    "demo:pie": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/pie.ts",
     "demo:portfolio": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/portfolio.ts",
     "deploy": "exit 0",
     "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",

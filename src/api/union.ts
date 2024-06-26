@@ -9,6 +9,8 @@ export const DEVICE = z.union([
   z.literal('WEB'),
 ]);
 
+export const DIVIDEND_CASH_ACTION = z.union([z.literal('REINVEST'), z.literal('TO_ACCOUNT_CASH')]);
+
 export const DIVIDEND_TYPE = z.union([
   z.literal('BONUS_MANUFACTURED_PAYMENT'),
   z.literal('BONUS'),
@@ -107,6 +109,48 @@ export const ORDER_STATUS = z.union([
 ]);
 
 export const ORDER_STRATEGY = z.union([z.literal('QUANTITY'), z.literal('VALUE')]);
+
+export const PIE_ICON = z.union([
+  z.literal('Airplane'),
+  z.literal('Apartments'),
+  z.literal('Bills'),
+  z.literal('BillsAndCoins'),
+  z.literal('Briefcase'),
+  z.literal('Burger'),
+  z.literal('Bus'),
+  z.literal('Cabin'),
+  z.literal('Car'),
+  z.literal('Child'),
+  z.literal('Coins'),
+  z.literal('Convertable'),
+  z.literal('Education'),
+  z.literal('Energy'),
+  z.literal('Factory'),
+  z.literal('Family'),
+  z.literal('Global'),
+  z.literal('Home'),
+  z.literal('Iceberg'),
+  z.literal('Landscape'),
+  z.literal('Leaf'),
+  z.literal('Materials'),
+  z.literal('Medical'),
+  z.literal('PiggyBank'),
+  z.literal('Pill'),
+  z.literal('Ring'),
+  z.literal('RV'),
+  z.literal('Shipping'),
+  z.literal('Storefront'),
+  z.literal('Tech'),
+  z.literal('Travel'),
+  z.literal('Umbrella'),
+  z.literal('Unicorn'),
+  z.literal('Vault'),
+  z.literal('Water'),
+  z.literal('Whale'),
+  z.literal('Wind'),
+]);
+
+export const PIE_STATUS_GOAL = z.union([z.literal('AHEAD'), z.literal('ON_TRACK'), z.literal('BEHIND')]);
 
 export const TAX_NAME = z.union([
   z.literal('COMMISSION_TURNOVER'),
