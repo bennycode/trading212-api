@@ -11,7 +11,7 @@ This [Trading 212](https://www.trading212.com/) API can be used with TypeScript 
 ## Implemented Endpoints
 
 - [x] [Instruments Metadata](https://t212public-api-docs.redoc.ly/#tag/Instruments-Metadata)
-- [ ] Pies
+- [x] [Pies](https://t212public-api-docs.redoc.ly/#tag/Pies)
 - [x] [Equity Orders](https://t212public-api-docs.redoc.ly/#tag/Equity-Orders)
 - [x] [Account Data](https://t212public-api-docs.redoc.ly/#tag/Account-Data)
 - [x] [Personal Portfolio](https://t212public-api-docs.redoc.ly/#tag/Personal-Portfolio)
