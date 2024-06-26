@@ -13,6 +13,7 @@ import {MetadataAPI} from './api/metadata/MetadataAPI.js';
 import {PortfolioAPI} from './api/portfolio/PortfolioAPI.js';
 import {HistoryAPI} from './api/history/HistoryAPI.js';
 import {OrderAPI} from './api/order/OrderAPI.js';
+import {PieAPI} from './api/pie/PieAPI.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
@@ -34,6 +35,7 @@ export class RESTClient {
   readonly history: HistoryAPI;
   readonly metadata: MetadataAPI;
   readonly order: OrderAPI;
+  readonly pie: PieAPI;
   readonly portfolio: PortfolioAPI;
 
   private readonly httpClient: AxiosInstance;
@@ -76,9 +78,16 @@ export class RESTClient {
         const url = error.config?.url;
         const method = error.config?.method;
 
-        // If a particular order is fetched we can use a lower timeout
-        if (method === 'get' && url?.includes(OrderAPI.URL.ORDERS + '/')) {
-          return 1_000;
+        if (method === 'get') {
+          // If a particular order ID is fetched we can use a lower timeout
+          if (url?.includes(OrderAPI.URL.ORDERS + '/')) {
+            return 1_000;
+          }
+
+          // If a particular pie ID is fetched we can use a lower timeout
+          if (url?.includes(PieAPI.URL.PIES + '/')) {
+            return 5_000;
+          }
         }
 
         switch (url) {
@@ -89,6 +98,7 @@ export class RESTClient {
             return 5_000;
           case AccountAPI.URL.INFO:
           case MetadataAPI.URL.EXCHANGES:
+          case PieAPI.URL.PIES:
             return 30_000;
           case MetadataAPI.URL.INSTRUMENTS:
             return 50_000;
@@ -111,6 +121,7 @@ export class RESTClient {
     this.history = new HistoryAPI(this.httpClient);
     this.metadata = new MetadataAPI(this.httpClient);
     this.order = new OrderAPI(this.httpClient);
+    this.pie = new PieAPI(this.httpClient);
     this.portfolio = new PortfolioAPI(this.httpClient);
   }
 }
