@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["vitest/globals"]
+  },
+  "include": ["src/**/*", "vitest.config.ts"],
+  "extends": "@tstv/tsconfig-common/tsconfig.json"
+}

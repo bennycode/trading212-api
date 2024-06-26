@@ -1,0 +1,53 @@
+{
+  "items": [
+    {
+      "amount": 2.98,
+      "dateTime": "2024-05-02T21:02:57.386Z",
+      "reference": "1c1e5d63-df2e-4e35-b32b-828a785dc1d9",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.98,
+      "dateTime": "2024-05-01T21:02:58.711Z",
+      "reference": "ed8264b6-1d54-4ad7-b2a5-d4b6f0ec3d44",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.98,
+      "dateTime": "2024-04-30T21:04:21.269Z",
+      "reference": "2a9c7e48-f182-4394-bd1f-cd193d4f526a",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.98,
+      "dateTime": "2024-04-29T21:04:24.103Z",
+      "reference": "8d5a1e84-412c-493b-82e7-2d7b1c5bb8a1",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.98,
+      "dateTime": "2024-04-28T21:04:29.749Z",
+      "reference": "b3f02a25-6ab1-4f96-8f8d-c9a9f57270ee",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.98,
+      "dateTime": "2024-04-27T21:04:25.003Z",
+      "reference": "f04d0a63-29b3-4b57-9ba5-bd17a9b1c7b0",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.97,
+      "dateTime": "2024-04-26T21:04:13.771Z",
+      "reference": "49b17d5c-18f8-43f1-9c6a-2cb37d3d9d20",
+      "type": "DEPOSIT"
+    },
+    {
+      "amount": 2.98,
+      "dateTime": "2024-04-25T21:04:29.588Z",
+      "reference": "da456d4f-57f2-4be4-8305-f6f8c5a5b3e1",
+      "type": "DEPOSIT"
+    }
+  ],
+  "nextPagePath": null
+}
