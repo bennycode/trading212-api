@@ -1,3 +1,9 @@
+#### 1.0.1 (2024-06-26)
+
+##### Bug Fixes
+
+- Reset Git after release ([4b41999e](https://github.com/bennycode/trading212-api/commit/4b41999e4c6df8de03d06b1a68cbb07cd2d3f757))
+
 ## 1.0.0 (2024-06-26)
 
 ##### New Features
