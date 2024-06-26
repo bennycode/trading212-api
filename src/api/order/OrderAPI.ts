@@ -62,6 +62,14 @@ const StopLimitOrderSchema = OrderSchema.extend({
 
 export type Order = z.infer<typeof OrderSchema>;
 
+export type PlaceLimitOrder = z.infer<typeof PlaceLimitOrderSchema>;
+
+export type PlaceMarketOrder = z.infer<typeof PlaceMarketOrderSchema>;
+
+export type PlaceStopOrder = z.infer<typeof PlaceStopOrderSchema>;
+
+export type PlaceStopLimitOrder = z.infer<typeof PlaceStopLimitOrderSchema>;
+
 /**
  * @see https://t212public-api-docs.redoc.ly/#tag/Equity-Orders
  */
@@ -93,28 +101,28 @@ export class OrderAPI {
     return this.apiClient.delete(resource);
   }
 
-  async placeLimitOrder(order: z.infer<typeof PlaceLimitOrderSchema>) {
+  async placeLimitOrder(order: PlaceLimitOrder) {
     const resource = OrderAPI.URL.ORDERS_LIMIT;
     const validated = PlaceLimitOrderSchema.parse(order);
     const response = await this.apiClient.post(resource, validated);
     return LimitOrderSchema.parse(response.data);
   }
 
-  async placeMarketOrder(order: z.infer<typeof PlaceMarketOrderSchema>) {
+  async placeMarketOrder(order: PlaceMarketOrder) {
     const resource = OrderAPI.URL.ORDERS_MARKET;
     const validated = PlaceMarketOrderSchema.parse(order);
     const response = await this.apiClient.post(resource, validated);
     return MarketOrderSchema.parse(response.data);
   }
 
-  async placeStopOrder(order: z.infer<typeof PlaceStopOrderSchema>) {
+  async placeStopOrder(order: PlaceStopOrder) {
     const resource = OrderAPI.URL.ORDERS_STOP;
     const validated = PlaceStopOrderSchema.parse(order);
     const response = await this.apiClient.post(resource, validated);
     return StopOrderSchema.parse(response.data);
   }
 
-  async placeStopLimitOrder(order: z.infer<typeof PlaceStopLimitOrderSchema>) {
+  async placeStopLimitOrder(order: PlaceStopLimitOrder) {
     const resource = OrderAPI.URL.ORDERS_STOP_LIMIT;
     const validated = PlaceStopLimitOrderSchema.parse(order);
     const response = await this.apiClient.post(resource, validated);

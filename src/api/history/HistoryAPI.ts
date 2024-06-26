@@ -91,6 +91,8 @@ const HistoryOrderDataSchema = z.object({
   type: ORDER_TYPE,
 });
 
+export type RequestExport = z.infer<typeof RequestExportSchema>;
+
 /**
  * @see https://t212public-api-docs.redoc.ly/#tag/Historical-items
  */
@@ -146,7 +148,7 @@ export class HistoryAPI {
   /**
    * @see https://t212public-api-docs.redoc.ly/#operation/requestReport
    */
-  async requestExport(request: z.infer<typeof RequestExportSchema>) {
+  async requestExport(request: RequestExport) {
     const resource = HistoryAPI.URL.EXPORTS;
     const validated = RequestExportSchema.parse(request);
     const response = await this.apiClient.post(resource, validated);
