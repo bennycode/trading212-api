@@ -10,12 +10,12 @@ This [Trading 212](https://www.trading212.com/) API can be used with TypeScript 
 
 ## Implemented Endpoints
 
-- [x] [Instruments Metadata](https://t212public-api-docs.redoc.ly/#tag/Instruments-Metadata)
-- [x] [Pies](https://t212public-api-docs.redoc.ly/#tag/Pies)
-- [x] [Equity Orders](https://t212public-api-docs.redoc.ly/#tag/Equity-Orders)
 - [x] [Account Data](https://t212public-api-docs.redoc.ly/#tag/Account-Data)
-- [x] [Personal Portfolio](https://t212public-api-docs.redoc.ly/#tag/Personal-Portfolio)
+- [x] [Equity Orders](https://t212public-api-docs.redoc.ly/#tag/Equity-Orders)
 - [x] [Historical items](https://t212public-api-docs.redoc.ly/#tag/Historical-items)
+- [x] [Instruments Metadata](https://t212public-api-docs.redoc.ly/#tag/Instruments-Metadata)
+- [x] [Personal Portfolio](https://t212public-api-docs.redoc.ly/#tag/Personal-Portfolio)
+- [x] [Pies](https://t212public-api-docs.redoc.ly/#tag/Pies)
 
 ## Features
 
@@ -64,6 +64,12 @@ npm run demo:account
 ## Internals
 
 This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod). Unit tests are implemented with [nock](https://github.com/nock/nock).
+
+## Contributions
+
+Here are some best practices PRs that show how to add endpoints:
+
+- [Add Pie API](https://github.com/bennycode/trading212-api/pull/6/files)
 
 ## Resources
 

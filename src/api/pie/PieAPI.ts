@@ -2,6 +2,15 @@ import type {AxiosInstance} from 'axios';
 import {z} from 'zod';
 import {DIVIDEND_CASH_ACTION, PIE_ICON, PIE_STATUS_GOAL} from '../union.js';
 
+const CreatePieSchema = z.object({
+  dividendCashAction: DIVIDEND_CASH_ACTION,
+  endDate: z.string().datetime({offset: true}),
+  goal: z.number(),
+  icon: z.string(),
+  instrumentShares: z.record(z.number()),
+  name: z.string(),
+});
+
 const PieSchema = z.object({
   cash: z.number(),
   dividendDetails: z.object({
@@ -54,6 +63,8 @@ export type Pie = z.infer<typeof PieSchema>;
 
 export type DetailedPie = z.infer<typeof DetailedPieSchema>;
 
+export type CreatePie = z.infer<typeof CreatePieSchema>;
+
 /**
  * @see https://t212public-api-docs.redoc.ly/#tag/Pies
  */
@@ -74,5 +85,33 @@ export class PieAPI {
     const resource = id ? `${PieAPI.URL.PIES}/${id}` : PieAPI.URL.PIES;
     const response = await this.apiClient.get(resource);
     return id ? DetailedPieSchema.parse(response.data) : z.array(PieSchema).parse(response.data);
+  }
+
+  /**
+   * @see https://t212public-api-docs.redoc.ly/#operation/create
+   */
+  async createPie(request: CreatePie) {
+    const resource = PieAPI.URL.PIES;
+    const validated = CreatePieSchema.parse(request);
+    const response = await this.apiClient.post(resource, validated);
+    return DetailedPieSchema.parse(response.data);
+  }
+
+  /**
+   * @see https://t212public-api-docs.redoc.ly/#operation/update
+   */
+  async updatePie(id: number, request: CreatePie) {
+    const resource = `${PieAPI.URL.PIES}/${id}`;
+    const validated = CreatePieSchema.parse(request);
+    const response = await this.apiClient.post(resource, validated);
+    return DetailedPieSchema.parse(response.data);
+  }
+
+  /**
+   * @see https://t212public-api-docs.redoc.ly/#operation/delete
+   */
+  async deletePie(id: number): Promise<void> {
+    const resource = `${PieAPI.URL.PIES}/${id}`;
+    return this.apiClient.delete(resource);
   }
 }
