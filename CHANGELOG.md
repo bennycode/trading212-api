@@ -1,3 +1,9 @@
+#### 1.0.2 (2024-06-26)
+
+##### New Features
+
+- Export types ([875f94e2](https://github.com/bennycode/trading212-api/commit/875f94e2373dfaf87eb27647bc0d53de906d0b0f))
+
 #### 1.0.1 (2024-06-26)
 
 ##### Bug Fixes
