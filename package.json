@@ -11,8 +11,9 @@
   "devDependencies": {
     "@evilmartians/lefthook": "^1.6.15",
     "@openapitools/openapi-generator-cli": "^2.13.4",
+    "@playwright/test": "^1.45.0",
     "@tstv/eslint-config": "^3.2.2",
-    "@tstv/tsconfig-common": "^3.4.1",
+    "@tstv/tsconfig-common": "^3.6.0",
     "@types/node": "^20.14.2",
     "@vitest/coverage-v8": "^1.6.0",
     "cross-env": "^7.0.3",
@@ -23,8 +24,8 @@
     "prettier": "^3.3.1",
     "rimraf": "^5.0.7",
     "tsimp": "^2.0.11",
-    "typedoc": "^0.25.13",
-    "typescript": "^5.4.5",
+    "typedoc": "^0.26.2",
+    "typescript": "^5.5.2",
     "vitest": "^1.5.1"
   },
   "files": [
@@ -54,7 +55,7 @@
     "demo:order": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/order.ts",
     "demo:pie": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/pie.ts",
     "demo:portfolio": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/portfolio.ts",
-    "deploy": "exit 0",
+    "deploy": "npm pack",
     "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",
     "dist": "npm run clean && npm run build",
     "docs": "npm run docs:build",
@@ -69,9 +70,9 @@
     "release:minor": "generate-changelog -m -x \"chore,test\" && npm run docs && npm run commit && npm version minor",
     "release:patch": "generate-changelog -p -x \"chore,test\" && npm run docs && npm run commit && npm version patch",
     "release:revert": "npm unpublish @bennycode/trading212-api",
-    "start": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/start.ts",
+    "start": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/login.ts",
     "test": "npm run test:types && npm run test:unit:coverage",
-    "test:types": "tsc --noEmit",
+    "test:types": "tsc --project tsconfig.check.json",
     "test:unit": "vitest run --passWithNoTests",
     "test:unit:coverage": "npm run test:unit -- --coverage.enabled"
   },
