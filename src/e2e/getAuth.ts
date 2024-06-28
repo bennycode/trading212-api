@@ -9,7 +9,7 @@ type Trading212Auth = {
   };
 };
 
-export async function login(email: string, password: string): Promise<Trading212Auth> {
+export async function login(email: string, password: string, onlyLoginToken = false): Promise<Trading212Auth> {
   let headers: {[key: string]: string} = {};
   const browser = await chromium.launch({headless: false});
   const page = await browser.newPage();
@@ -36,7 +36,12 @@ export async function login(email: string, password: string): Promise<Trading212
   await page.waitForSelector(globalMarketsSelector);
 
   const cookies = await page.context().cookies();
-  const cookieString = cookies.map(cookie => `${cookie.name}=${cookie.value}`).join('; ');
+  let cookieString = cookies.map(cookie => `${cookie.name}=${cookie.value}`).join('; ');
+  if (onlyLoginToken) {
+    const loginCookie = cookies.find(cookie => cookie.name === 'LOGIN_TOKEN');
+    const loginToken = loginCookie ? loginCookie.value : null;
+    cookieString = `LOGIN_TOKEN=${loginToken}`;
+  }
 
   // For debugging
   // await page.screenshot({path: 'screenshot.png'});
@@ -48,6 +53,9 @@ export async function login(email: string, password: string): Promise<Trading212
   };
 }
 
+/**
+ * @see https://github.com/HAKSOAT/tradingTOT/blob/844e7d264fbf5e78adb6a80f3ea8548e5b28fae3/src/tradingTOT/utils/browser.py#L270
+ */
 export async function getAuth(email: string, password: string): Promise<Trading212Auth> {
   const COOKIE_FILE = 'cookie.txt';
   const HEADERS_FILE = 'headers.json';
