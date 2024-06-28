@@ -51,6 +51,14 @@ const info = await client.rest.account.getInfo();
 console.log(info);
 ```
 
+### API Key Generation
+
+In order to generate an API key you can follow the [official instructions](https://helpcentre.trading212.com/hc/en-us/articles/14584770928157). Basically, you need to [login](https://app.trading212.com/), click on your account and do the following:
+
+1. Click "Switch to Practice" in order to generate an API key for the demo code, otherwise a live API key will be generated
+2. Go to "Settings"
+3. Click on "API (Beta)"
+
 ### Development
 
 If cloning the project locally, you can also add a `.env` file to configure the API client (see [.env.defaults][4]). This allows you to run all demo scripts.

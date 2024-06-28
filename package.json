@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^1.7.2",
     "axios-retry": "^4.4.0",
+    "fs-extra": "^11.2.0",
     "zod": "^3.23.8"
   },
   "description": "",
@@ -14,6 +15,7 @@
     "@playwright/test": "^1.45.0",
     "@tstv/eslint-config": "^3.2.2",
     "@tstv/tsconfig-common": "^3.6.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.2",
     "@vitest/coverage-v8": "^1.6.0",
     "cross-env": "^7.0.3",
@@ -70,7 +72,7 @@
     "release:minor": "generate-changelog -m -x \"chore,test\" && npm run docs && npm run commit && npm version minor",
     "release:patch": "generate-changelog -p -x \"chore,test\" && npm run docs && npm run commit && npm version patch",
     "release:revert": "npm unpublish @bennycode/trading212-api",
-    "start": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/login.ts",
+    "start": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/start.ts",
     "test": "npm run test:types && npm run test:unit:coverage",
     "test:types": "tsc --project tsconfig.check.json",
     "test:unit": "vitest run --passWithNoTests",
