@@ -9,6 +9,7 @@
   },
   "description": "",
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.3",
     "@evilmartians/lefthook": "^1.6.18",
     "@openapitools/openapi-generator-cli": "^2.13.4",
     "@tstv/eslint-config": "^3.2.2",
@@ -24,7 +25,7 @@
     "rimraf": "^5.0.7",
     "tsimp": "^2.0.11",
     "typedoc": "^0.26.3",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.3",
     "vitest": "^1.5.1"
   },
   "files": [
@@ -54,9 +55,9 @@
     "demo:order": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/order.ts",
     "demo:pie": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/pie.ts",
     "demo:portfolio": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/portfolio.ts",
-    "deploy": "npm run dist && npm pack",
+    "deploy": "exit 0",
     "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",
-    "dist": "npm run clean && npm run build",
+    "dist": "npm run clean && npm run build && attw --pack . --ignore-rules cjs-resolves-to-esm",
     "docs": "npm run docs:build",
     "docs:build": "typedoc ./src/index.ts",
     "fix": "npm run fix:format && npm run fix:lint",
