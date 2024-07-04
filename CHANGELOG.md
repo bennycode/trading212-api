@@ -1,3 +1,9 @@
+### 1.1.0 (2024-07-04)
+
+##### Bug Fixes
+
+- update main entry point ([feddc37e](https://github.com/bennycode/trading212-api/commit/feddc37e750759089af5e0d36dd3e546f361ad72))
+
 #### 1.0.2 (2024-06-26)
 
 ##### New Features
