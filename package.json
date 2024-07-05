@@ -4,30 +4,31 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
-    "axios-retry": "^4.4.0",
+    "axios-retry": "^4.4.1",
     "fs-extra": "^11.2.0",
     "zod": "^3.23.8"
   },
   "description": "",
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.6.15",
+    "@arethetypeswrong/cli": "^0.15.3",
+    "@evilmartians/lefthook": "^1.6.18",
     "@openapitools/openapi-generator-cli": "^2.13.4",
     "@playwright/test": "^1.45.0",
     "@tstv/eslint-config": "^3.2.2",
     "@tstv/tsconfig-common": "^3.6.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.9",
     "@vitest/coverage-v8": "^1.6.0",
     "cross-env": "^7.0.3",
     "dotenv-defaults": "^5.0.2",
     "eslint": "^8.57.0",
     "generate-changelog": "^1.8.0",
     "nock": "^13.5.4",
-    "prettier": "^3.3.1",
+    "prettier": "^3.3.2",
     "rimraf": "^5.0.7",
     "tsimp": "^2.0.11",
-    "typedoc": "^0.26.2",
-    "typescript": "^5.5.2",
+    "typedoc": "^0.26.3",
+    "typescript": "^5.5.3",
     "vitest": "^1.5.1"
   },
   "files": [
@@ -37,7 +38,7 @@
   "homepage": "https://bennycode.com/trading212-api",
   "keywords": [],
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "name": "trading212-api",
   "private": false,
   "repository": {
@@ -49,7 +50,7 @@
     "check": "npm run check:format -- --list-different && npm run check:lint",
     "check:format": "prettier --ignore-path .gitignore --log-level error .",
     "check:lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern .",
-    "clean": "rimraf coverage dist docs",
+    "clean": "rimraf coverage dist docs .tsimp",
     "commit": "npm run fix && git commit -am \"chore: Generated release files\"",
     "demo:account": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/account.ts",
     "demo:history": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/history.ts",
@@ -59,7 +60,7 @@
     "demo:portfolio": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/demo/portfolio.ts",
     "deploy": "npm pack",
     "dev": "cross-env TSIMP_DIAG=error node --inspect --import=tsimp/import ./src/start.ts",
-    "dist": "npm run clean && npm run build",
+    "dist": "npm run clean && npm run build && attw --pack . --ignore-rules cjs-resolves-to-esm",
     "docs": "npm run docs:build",
     "docs:build": "typedoc ./src/index.ts",
     "fix": "npm run fix:format && npm run fix:lint",
@@ -80,5 +81,5 @@
     "test:unit:coverage": "npm run test:unit -- --coverage.enabled"
   },
   "type": "module",
-  "version": "1.0.2"
+  "version": "1.1.0"
 }
