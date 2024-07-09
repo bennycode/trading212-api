@@ -1,5 +1,5 @@
 import 'dotenv-defaults/config.js';
-import {Cookie} from 'playwright';
+import type {Cookie} from 'playwright';
 import assert from 'node:assert';
 import {getAuth} from './e2e/getAuth.js';
 import {getdUUID} from './e2e/getdUUID.js';
@@ -39,15 +39,19 @@ assert.ok(loginToken);
 const ACCOUNT_SUMMARY_URL = 'https://live.trading212.com/rest/trading/v1/accounts/summary';
 
 try {
-  const accountSummary = await axios.post(ACCOUNT_SUMMARY_URL, {}, {
-    headers: {
-      'User-Agent': getUserAgent(),
-      'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
-      'Content-Type': 'application/json',
-      Cookie: cookieString,
-      // Cookie: `LOGIN_TOKEN=${loginToken}`,
-    },
-  });
+  const accountSummary = await axios.post(
+    ACCOUNT_SUMMARY_URL,
+    {},
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: cookieString,
+        'User-Agent': getUserAgent(),
+        'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
+        // Cookie: `LOGIN_TOKEN=${loginToken}`,
+      },
+    }
+  );
   console.log('response', accountSummary);
 } catch (error) {
   if (isAxiosError(error)) {

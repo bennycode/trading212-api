@@ -1,7 +1,7 @@
 import fs from 'fs';
 import fse from 'fs-extra/esm';
-import { chromium } from 'playwright';
-import { getUserAgent } from './getUserAgent.js';
+import {chromium} from 'playwright';
+import {getUserAgent} from './getUserAgent.js';
 
 type Trading212Auth = {
   cookieString: string;
@@ -68,11 +68,10 @@ export async function getAuth(email: string, password: string): Promise<Trading2
       cookieString: fs.readFileSync(COOKIE_FILE, 'utf8'),
       headers: fse.readJsonSync(HEADERS_FILE, {encoding: 'utf8'}),
     };
-  } else {
-    console.log('No auth files found, logging in via browser...');
-    const auth = await login(email, password);
-    fse.outputJsonSync(COOKIE_FILE, JSON.parse(auth.cookieString), {encoding: 'utf8'});
-    fse.outputJsonSync(HEADERS_FILE, auth.headers, {encoding: 'utf8'});
-    return auth;
   }
+  console.log('No auth files found, logging in via browser...');
+  const auth = await login(email, password);
+  fse.outputJsonSync(COOKIE_FILE, JSON.parse(auth.cookieString), {encoding: 'utf8'});
+  fse.outputJsonSync(HEADERS_FILE, auth.headers, {encoding: 'utf8'});
+  return auth;
 }
