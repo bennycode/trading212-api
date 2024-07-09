@@ -19,6 +19,5 @@ npm-debug.log*
 /blob-report/
 /playwright/.cache/
 # Credentials
-cookie.txt
-headers.json
-screenshot.jpg
+credentials/
+screenshot.png

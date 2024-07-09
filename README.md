@@ -93,6 +93,10 @@ Here are some best practices PRs that show how to add endpoints:
 - [OpenAPI Generator: Global Properties](https://openapi-generator.tech/docs/globals/)
 - [OpenAPI Generator: Config Options](https://openapi-generator.tech/docs/generators/typescript-fetch/#config-options)
 
+### Others
+
+- [Python-based Trading212 API](https://github.com/HAKSOAT/tradingTOT)
+
 [1]: https://github.com/bennycode/trading212-api/tree/main/src/demo
 [2]: https://github.com/bennycode/trading212-api/tree/main/docs
 [3]: https://docs.npmjs.com/about-semantic-versioning
