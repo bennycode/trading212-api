@@ -5,4 +5,5 @@ export * from './api/order/OrderAPI.js';
 export * from './api/pie/PieAPI.js';
 export * from './api/portfolio/PortfolioAPI.js';
 export * from './APIClient.js';
+export * from './initClient.js';
 export * from './RESTClient.js';

@@ -3,7 +3,7 @@ import fse from 'fs-extra/esm';
 import {chromium} from 'playwright';
 import {getUserAgent} from './getUserAgent.js';
 
-type Trading212Auth = {
+export type Trading212Auth = {
   cookieString: string;
   headers: {
     [key: string]: string;
@@ -12,7 +12,8 @@ type Trading212Auth = {
 
 export async function login(email: string, password: string): Promise<Trading212Auth> {
   let headers: {[key: string]: string} = {};
-  const browser = await chromium.launch({headless: false});
+  console.log(process.env.TRADING212_HEADLESS_BROWSER)
+  const browser = await chromium.launch({headless: process.env.TRADING212_HEADLESS_BROWSER === 'false' ? false : true});
   const context = await browser.newContext({
     userAgent: getUserAgent(),
   });
@@ -40,9 +41,6 @@ export async function login(email: string, password: string): Promise<Trading212
   await page.waitForSelector(globalMarketsSelector);
 
   const cookies = await page.context().cookies();
-
-  // For debugging
-  await page.screenshot({path: 'screenshot.png'});
   await browser.close();
 
   return {

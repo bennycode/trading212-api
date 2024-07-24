@@ -74,7 +74,7 @@
     "release:minor": "generate-changelog -m -x \"chore,test\" && npm run docs && npm run commit && npm version minor",
     "release:patch": "generate-changelog -p -x \"chore,test\" && npm run docs && npm run commit && npm version patch",
     "release:revert": "npm unpublish @bennycode/trading212-api",
-    "start": "cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/start.ts",
+    "start": "rimraf .tsimp && cross-env TSIMP_DIAG=error node --import=tsimp/import ./src/start.ts",
     "test": "npm run test:types && npm run test:unit:coverage",
     "test:types": "tsc --project tsconfig.check.json",
     "test:unit": "vitest run --passWithNoTests",

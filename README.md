@@ -69,9 +69,36 @@ If cloning the project locally, you can also add a `.env` file to configure the 
 npm run demo:account
 ```
 
+### Experimental API
+
+The official Trading212 API does not support placing orders in a live environment. Therefore, this library includes an experimental API that uses a headless Chrome browser to execute trades programmatically. You will need to log in with your username and password, so make sure to set the following environment parameters in your `.env` file:
+
+```bash
+TRADING212_HEADLESS_BROWSER=false
+TRADING212_EMAIL=name@mail.com
+TRADING212_PASSWORD=secret
+```
+
+This technique will log in locally using your credentials and save them in the "[credentials](./credentials/)" directory. This avoids unnecessary re-logins, as the login token remains valid for the duration of the session.
+
+Here is how you can use the experimental API:
+
+```ts
+import {initClient} from 'trading212-api';
+
+const auth = await client.experimental.getAuthentication();
+console.log(auth.email);
+```
+
+Locally you can test it using:
+
+```bash
+npm start
+```
+
 ## Internals
 
-This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod). Unit tests are implemented with [nock](https://github.com/nock/nock).
+This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod). Unit tests are implemented with [nock](https://github.com/nock/nock) and the headless browser is controlled via [Playwright](https://playwright.dev/).
 
 ## Contributions
 

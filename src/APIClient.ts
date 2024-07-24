@@ -1,3 +1,4 @@
+import {ExperimentalClient} from './ExperimentalClient.js';
 import {RESTClient} from './RESTClient.js';
 
 /**
@@ -5,6 +6,7 @@ import {RESTClient} from './RESTClient.js';
  */
 export class APIClient {
   readonly rest: RESTClient;
+  readonly experimental: ExperimentalClient;
 
   static URL_DEMO = 'https://demo.trading212.com';
   static URL_LIVE = 'https://live.trading212.com';
@@ -14,6 +16,7 @@ export class APIClient {
     apiKey: string
   ) {
     this.rest = new RESTClient(baseUrl, apiKey);
+    this.experimental = new ExperimentalClient();
   }
 
   get isLive(): boolean {
