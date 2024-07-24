@@ -12,8 +12,8 @@ export type Trading212Auth = {
 
 export async function login(email: string, password: string): Promise<Trading212Auth> {
   let headers: {[key: string]: string} = {};
-  console.log(process.env.TRADING212_HEADLESS_BROWSER)
-  const browser = await chromium.launch({headless: process.env.TRADING212_HEADLESS_BROWSER === 'false' ? false : true});
+  console.log(process.env.TRADING212_HEADLESS_BROWSER);
+  const browser = await chromium.launch({headless: process.env.TRADING212_HEADLESS_BROWSER !== 'false'});
   const context = await browser.newContext({
     userAgent: getUserAgent(),
   });
