@@ -13,3 +13,11 @@ dist/
 lerna-debug.log
 node_modules/
 npm-debug.log*
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+# Credentials
+credentials/
+screenshot.png

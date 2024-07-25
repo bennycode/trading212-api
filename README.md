@@ -51,6 +51,14 @@ const info = await client.rest.account.getInfo();
 console.log(info);
 ```
 
+### API Key Generation
+
+In order to generate an API key you can follow the [official instructions](https://helpcentre.trading212.com/hc/en-us/articles/14584770928157). Basically, you need to [login](https://app.trading212.com/), click on your account and do the following:
+
+1. Click "Switch to Practice" in order to generate an API key for the demo code, otherwise a live API key will be generated
+2. Go to "Settings"
+3. Click on "API (Beta)"
+
 ### Development
 
 If cloning the project locally, you can also add a `.env` file to configure the API client (see [.env.defaults][4]). This allows you to run all demo scripts.
@@ -61,9 +69,55 @@ If cloning the project locally, you can also add a `.env` file to configure the 
 npm run demo:account
 ```
 
+## Experimental API
+
+The official Trading212 API does not support placing orders in a live environment. Therefore, this library includes an experimental API that uses a headless Chrome browser to execute trades programmatically. You will need to log in with your username and password, so make sure to set the following environment parameters in your `.env` file:
+
+```bash
+TRADING212_HEADLESS_BROWSER=false
+TRADING212_EMAIL=name@mail.com
+TRADING212_PASSWORD=secret
+```
+
+This technique will log in locally using your credentials and save them in the "[credentials](./credentials/)" directory. This avoids unnecessary re-logins, as the login token remains valid for the duration of the session.
+
+Here is how you can use the experimental API:
+
+```ts
+import {initClient} from 'trading212-api';
+
+const auth = await client.experimental.getAuthentication();
+console.log(auth.email);
+```
+
+Locally you can test it using:
+
+```bash
+npm start
+```
+
+### Discoveries
+
+The Trading212 experimental API will show this error when submitting an empty object (`{}`):
+
+> data: { code: 'InternalError' }
+
+To fix it, we have to submit an empty array (`[]`):
+
+```ts
+await axios.post<AccountSummary>(ACCOUNT_SUMMARY_URL, [], {
+  headers: {
+    ...auth.headers,
+    Cookie: toCookieString(cookies),
+    'User-Agent': getUserAgent(),
+    'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
+  },
+});
+```
+
 ## Internals
 
-This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod). Unit tests are implemented with [nock](https://github.com/nock/nock).
+This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod). Unit tests are implemented with [nock](https://github.com/nock/nock) and the headless browser is controlled via [Playwright](https://playwright.dev/).
 
 ## Contributions
 
@@ -84,6 +138,10 @@ Here are some best practices PRs that show how to add endpoints:
 - [JSON to Zod Schema](https://transform.tools/json-to-zod)
 - [OpenAPI Generator: Global Properties](https://openapi-generator.tech/docs/globals/)
 - [OpenAPI Generator: Config Options](https://openapi-generator.tech/docs/generators/typescript-fetch/#config-options)
+
+### Others
+
+- [Python-based Trading212 API](https://github.com/HAKSOAT/tradingTOT)
 
 [1]: https://github.com/bennycode/trading212-api/tree/main/src/demo
 [2]: https://github.com/bennycode/trading212-api/tree/main/docs

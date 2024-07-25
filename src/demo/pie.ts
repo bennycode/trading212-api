@@ -1,4 +1,4 @@
-import {initClient} from './initClient.js';
+import {initClient} from '../initClient.js';
 
 const client = await initClient();
 
