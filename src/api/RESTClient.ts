@@ -14,7 +14,8 @@ import {PortfolioAPI} from './v0/portfolio/PortfolioAPI.js';
 import {HistoryAPI} from './v0/history/HistoryAPI.js';
 import {OrderAPI} from './v0/order/OrderAPI.js';
 import {PieAPI} from './v0/pie/PieAPI.js';
-import {getBaseUrl, Trading212Environment} from '../getBaseUrl.js';
+import type {Trading212Environment} from '../getBaseUrl.js';
+import {getBaseUrl} from '../getBaseUrl.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.

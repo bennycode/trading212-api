@@ -1,10 +1,12 @@
-import axios, { AxiosInstance } from 'axios';
-import type { Cookie } from 'playwright';
-import { AccountsAPI } from '../api/v1/accounts/AccountsAPI.js';
-import { getBaseServicesUrl, Trading212Environment } from '../getBaseUrl.js';
-import { enforceAuth } from './enforceAuth.js';
-import type { Trading212Auth } from './getAuth.js';
-import { getAuth } from './getAuth.js';
+import type {AxiosInstance} from 'axios';
+import axios from 'axios';
+import type {Cookie} from 'playwright';
+import {AccountsAPI} from '../api/v1/accounts/AccountsAPI.js';
+import type {Trading212Environment} from '../getBaseUrl.js';
+import {getBaseServicesUrl} from '../getBaseUrl.js';
+import {enforceAuth} from './enforceAuth.js';
+import type {Trading212Auth} from './getAuth.js';
+import {getAuth} from './getAuth.js';
 
 export class ExperimentalClient {
   private readonly auth?: Trading212Auth;

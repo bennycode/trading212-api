@@ -1,6 +1,7 @@
 import {ExperimentalClient} from './experimental/ExperimentalClient.js';
 import {RESTClient} from './api/RESTClient.js';
-import {TRADING212_ENVIRONMENT, Trading212Environment} from './getBaseUrl.js';
+import type {Trading212Environment} from './getBaseUrl.js';
+import {TRADING212_ENVIRONMENT} from './getBaseUrl.js';
 
 /**
  * This class holds all kinds of API connections (REST, WebSocket, etc.)

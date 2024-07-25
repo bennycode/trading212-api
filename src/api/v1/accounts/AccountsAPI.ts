@@ -1,9 +1,9 @@
-import type { AxiosInstance } from 'axios';
-import type { Cookie } from 'playwright';
-import { Trading212Auth } from '../../../experimental/getAuth.js';
-import { getdUUID } from '../../../experimental/getdUUID.js';
-import { getUserAgent } from '../../../experimental/getUserAgent.js';
-import { toCookieString } from '../../../experimental/toCookieString.js';
+import type {AxiosInstance} from 'axios';
+import type {Cookie} from 'playwright';
+import type {Trading212Auth} from '../../../experimental/getAuth.js';
+import {getdUUID} from '../../../experimental/getdUUID.js';
+import {getUserAgent} from '../../../experimental/getUserAgent.js';
+import {toCookieString} from '../../../experimental/toCookieString.js';
 
 export type AccountSummary = {
   cash: {
@@ -27,7 +27,7 @@ export type AccountSummary = {
   };
   open: {
     unfilteredCount: number;
-    items: Array<{
+    items: {
       positionId: string;
       humanId: string;
       created: string;
@@ -50,7 +50,7 @@ export type AccountSummary = {
       fxPpl?: number;
       lockedQuantity: number;
       sellableQuantity: number;
-    }>;
+    }[];
   };
   orders: {
     unfilteredCount: number;

@@ -1,8 +1,8 @@
 import {APIClient} from './APIClient.js';
 
 export const TRADING212_ENVIRONMENT = {
-  LIVE: 'live',
   DEMO: 'demo',
+  LIVE: 'live',
   TEST: 'test',
 } as const;
 
