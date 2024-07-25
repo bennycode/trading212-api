@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import type {AxiosInstance} from 'axios';
-import {ORDER_STATUS, ORDER_STRATEGY, ORDER_TYPE, TIME_VALIDITY} from '../union.js';
+import {ORDER_STATUS, ORDER_STRATEGY, ORDER_TYPE, TIME_VALIDITY} from '../../union.js';
 
 const OrderSchema = z.object({
   creationTime: z.string().datetime({offset: true}),

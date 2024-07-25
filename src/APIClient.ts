@@ -1,5 +1,6 @@
-import {ExperimentalClient} from './ExperimentalClient.js';
-import {RESTClient} from './RESTClient.js';
+import {ExperimentalClient} from './experimental/ExperimentalClient.js';
+import {RESTClient} from './api/RESTClient.js';
+import {TRADING212_ENVIRONMENT, Trading212Environment} from './getBaseUrl.js';
 
 /**
  * This class holds all kinds of API connections (REST, WebSocket, etc.)
@@ -8,18 +9,21 @@ export class APIClient {
   readonly rest: RESTClient;
   readonly experimental: ExperimentalClient;
 
-  static URL_DEMO = 'https://demo.trading212.com';
-  static URL_LIVE = 'https://live.trading212.com';
+  static readonly URL_DEMO = 'https://demo.trading212.com';
+  static readonly URL_LIVE = 'https://live.trading212.com';
+
+  static readonly URL_SERVICES_DEMO = 'https://demo.services.trading212.com';
+  static readonly URL_SERVICES_LIVE = 'https://live.services.trading212.com';
 
   constructor(
-    private readonly baseUrl: string,
+    private readonly environment: Trading212Environment,
     apiKey: string
   ) {
-    this.rest = new RESTClient(baseUrl, apiKey);
-    this.experimental = new ExperimentalClient();
+    this.rest = new RESTClient(environment, apiKey);
+    this.experimental = new ExperimentalClient(environment);
   }
 
   get isLive(): boolean {
-    return this.baseUrl === APIClient.URL_LIVE;
+    return this.environment === TRADING212_ENVIRONMENT.LIVE;
   }
 }

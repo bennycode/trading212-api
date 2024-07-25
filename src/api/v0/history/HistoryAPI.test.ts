@@ -1,14 +1,15 @@
 import nock from 'nock';
-import {APIClient} from '../../APIClient.js';
+import {APIClient} from '../../../APIClient.js';
 import {HistoryAPI} from './HistoryAPI.js';
-import transactions1 from '../../fixtures/api/v0/history/transactions/transactions-1.json' with {type: 'json'};
-import transactions2 from '../../fixtures/api/v0/history/transactions/transactions-2.json' with {type: 'json'};
-import {getBaseUrl} from '../../getBaseUrl.js';
+import transactions1 from '../../../fixtures/api/v0/history/transactions/transactions-1.json' with {type: 'json'};
+import transactions2 from '../../../fixtures/api/v0/history/transactions/transactions-2.json' with {type: 'json'};
+import {getBaseUrl, TRADING212_ENVIRONMENT} from '../../../getBaseUrl.js';
 
 describe('HistoryAPI', () => {
   describe('getTransactions', () => {
     it('retrieves paginated transactions', async () => {
-      const baseURL = getBaseUrl('test');
+      const env = TRADING212_ENVIRONMENT.TEST;
+      const baseURL = getBaseUrl(env);
       nock(baseURL)
         .persist()
         .get(HistoryAPI.URL.TRANSACTIONS)
@@ -22,7 +23,7 @@ describe('HistoryAPI', () => {
           return [404];
         });
 
-      const client = new APIClient(baseURL, 'apiKey');
+      const client = new APIClient(env, 'apiKey');
       const transactions = client.rest.history.getTransactions();
       const total = [];
       for await (const data of transactions) {

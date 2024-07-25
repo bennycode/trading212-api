@@ -69,7 +69,7 @@ If cloning the project locally, you can also add a `.env` file to configure the 
 npm run demo:account
 ```
 
-### Experimental API
+## Experimental API
 
 The official Trading212 API does not support placing orders in a live environment. Therefore, this library includes an experimental API that uses a headless Chrome browser to execute trades programmatically. You will need to log in with your username and password, so make sure to set the following environment parameters in your `.env` file:
 
@@ -94,6 +94,25 @@ Locally you can test it using:
 
 ```bash
 npm start
+```
+
+### Discoveries
+
+The Trading212 experimental API will show this error when submitting an empty object (`{}`):
+
+> data: { code: 'InternalError' }
+
+To fix it, we have to submit an empty array (`[]`):
+
+```ts
+await axios.post<AccountSummary>(ACCOUNT_SUMMARY_URL, [], {
+  headers: {
+    ...auth.headers,
+    Cookie: toCookieString(cookies),
+    'User-Agent': getUserAgent(),
+    'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
+  },
+});
 ```
 
 ## Internals

@@ -8,12 +8,13 @@ import type {
 } from 'axios';
 import axios, {isAxiosError} from 'axios';
 import axiosRetry from 'axios-retry';
-import {AccountAPI} from './api/account/AccountAPI.js';
-import {MetadataAPI} from './api/metadata/MetadataAPI.js';
-import {PortfolioAPI} from './api/portfolio/PortfolioAPI.js';
-import {HistoryAPI} from './api/history/HistoryAPI.js';
-import {OrderAPI} from './api/order/OrderAPI.js';
-import {PieAPI} from './api/pie/PieAPI.js';
+import {AccountAPI} from './v0/account/AccountAPI.js';
+import {MetadataAPI} from './v0/metadata/MetadataAPI.js';
+import {PortfolioAPI} from './v0/portfolio/PortfolioAPI.js';
+import {HistoryAPI} from './v0/history/HistoryAPI.js';
+import {OrderAPI} from './v0/order/OrderAPI.js';
+import {PieAPI} from './v0/pie/PieAPI.js';
+import {getBaseUrl, Trading212Environment} from '../getBaseUrl.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
@@ -41,11 +42,11 @@ export class RESTClient {
   private readonly httpClient: AxiosInstance;
 
   constructor(
-    readonly baseURL: string,
+    readonly environment: Trading212Environment,
     private readonly apiKey: string
   ) {
     // Setup Axios
-    this.httpClient = axios.create({baseURL});
+    this.httpClient = axios.create({baseURL: getBaseUrl(environment)});
 
     this.httpClient.interceptors.request.use(config => {
       config.headers.Authorization = this.apiKey;
