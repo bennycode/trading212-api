@@ -1,10 +1,10 @@
 import type {AxiosInstance} from 'axios';
 import type {Cookie} from 'playwright';
-import {Trading212Auth} from '../../../experimental/getAuth.js';
+import type {Trading212Auth} from '../../../experimental/getAuth.js';
 import {getdUUID} from '../../../experimental/getdUUID.js';
 import {getUserAgent} from '../../../experimental/getUserAgent.js';
 import {toCookieString} from '../../../experimental/toCookieString.js';
-import {Authentication} from './Authentication.js';
+import type {Authentication} from './Authentication.js';
 
 export class AuthenticateAPI {
   static readonly URL = {

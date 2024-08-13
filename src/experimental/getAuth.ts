@@ -68,11 +68,10 @@ export async function getAuth(email: string, password: string, enforceRelogin: b
       cookieString: fs.readFileSync(COOKIE_FILE, 'utf8'),
       headers: fse.readJsonSync(HEADERS_FILE, {encoding: 'utf8'}),
     };
-  } else {
-    console.log('No auth files found, logging in via browser...');
-    const auth = await login(email, password);
-    fse.outputJsonSync(COOKIE_FILE, JSON.parse(auth.cookieString), {encoding: 'utf8'});
-    fse.outputJsonSync(HEADERS_FILE, auth.headers, {encoding: 'utf8'});
-    return auth;
   }
+  console.log('No auth files found, logging in via browser...');
+  const auth = await login(email, password);
+  fse.outputJsonSync(COOKIE_FILE, JSON.parse(auth.cookieString), {encoding: 'utf8'});
+  fse.outputJsonSync(HEADERS_FILE, auth.headers, {encoding: 'utf8'});
+  return auth;
 }

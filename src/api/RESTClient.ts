@@ -8,14 +8,14 @@ import type {
 } from 'axios';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import type { Trading212Environment } from '../getBaseUrl.js';
-import { getBaseUrl } from '../getBaseUrl.js';
-import { AccountAPI } from './v0/account/AccountAPI.js';
-import { HistoryAPI } from './v0/history/HistoryAPI.js';
-import { MetadataAPI } from './v0/metadata/MetadataAPI.js';
-import { OrderAPI } from './v0/order/OrderAPI.js';
-import { PieAPI } from './v0/pie/PieAPI.js';
-import { PortfolioAPI } from './v0/portfolio/PortfolioAPI.js';
+import type {Trading212Environment} from '../getBaseUrl.js';
+import {getBaseUrl} from '../getBaseUrl.js';
+import {AccountAPI} from './v0/account/AccountAPI.js';
+import {HistoryAPI} from './v0/history/HistoryAPI.js';
+import {MetadataAPI} from './v0/metadata/MetadataAPI.js';
+import {OrderAPI} from './v0/order/OrderAPI.js';
+import {PieAPI} from './v0/pie/PieAPI.js';
+import {PortfolioAPI} from './v0/portfolio/PortfolioAPI.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
