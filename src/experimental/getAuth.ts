@@ -50,6 +50,8 @@ export async function login(email: string, password: string): Promise<Trading212
 }
 
 /**
+ * Attempts to log in using a locally stored cookie. If the cookie is invalid, it will open a browser and re-login.
+ *
  * @see https://github.com/HAKSOAT/tradingTOT/blob/844e7d264fbf5e78adb6a80f3ea8548e5b28fae3/src/tradingTOT/utils/browser.py#L270
  */
 export async function getAuth(email: string, password: string): Promise<Trading212Auth> {

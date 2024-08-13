@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {isAxiosError} from 'axios';
 import type {Cookie} from 'playwright';
 import type {Trading212Auth} from './getAuth.js';
 import {toCookieString} from './toCookieString.js';
@@ -51,14 +51,24 @@ const AUTHENTICATE_URL = 'https://live.trading212.com/rest/v1/webclient/authenti
 export async function enforceAuth(auth: Trading212Auth, cookies: Cookie[]) {
   const duuid = getdUUID(cookies);
 
-  const authentication = await axios.get<Authentication>(AUTHENTICATE_URL, {
-    headers: {
-      ...auth.headers,
-      Cookie: toCookieString(cookies),
-      'User-Agent': getUserAgent(),
-      'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
-    },
-  });
+  // TODO: Use axios instance here instead of static class and reauthenticate in case of error!
+  const authentication = await axios
+    .get<Authentication>(AUTHENTICATE_URL, {
+      headers: {
+        ...auth.headers,
+        Cookie: toCookieString(cookies),
+        'User-Agent': getUserAgent(),
+        'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
+      },
+    })
+    .catch(error => {
+      // Handle this in an interceptor!
+      if (isAxiosError(error)) {
+        console.log(error.response?.status); // 403
+        console.log(error.code); // ERR_BAD_REQUEST
+      }
+      process.exit(0);
+    });
 
   return authentication.data;
 }
