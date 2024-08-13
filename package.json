@@ -17,19 +17,19 @@
     "@tstv/eslint-config": "^3.2.2",
     "@tstv/tsconfig-common": "^3.6.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.14.9",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@types/node": "^22.0.2",
+    "@vitest/coverage-v8": "^2.0.5",
     "cross-env": "^7.0.3",
     "dotenv-defaults": "^5.0.2",
     "eslint": "^8.57.0",
     "generate-changelog": "^1.8.0",
     "nock": "^13.5.4",
     "prettier": "^3.3.2",
-    "rimraf": "^5.0.7",
+    "rimraf": "^6.0.1",
     "tsimp": "^2.0.11",
     "typedoc": "^0.26.3",
     "typescript": "^5.5.3",
-    "vitest": "^1.5.1"
+    "vitest": "^2.0.5"
   },
   "files": [
     "dist",
