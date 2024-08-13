@@ -1,0 +1,11 @@
+https://live.services.trading212.com/charting/v2/json/SHOP_US_EQ/preview/extended/deviation
+https://live.services.trading212.com/rest/cash-interest/v1/config?dealer=T212CY
+https://live.services.trading212.com/rest/cash-interest/v2/interest/rates
+https://live.services.trading212.com/rest/customers/v1/account-details
+https://live.services.trading212.com/rest/customers/v1/personal-details
+https://live.services.trading212.com/rest/trading/v1/accounts/summary
+https://live.services.trading212.com/rest/v1/accounts
+https://live.services.trading212.com/rest/v1/webclient/authenticate
+https://live.services.trading212.com/rest/v3/two-factor-auth/confirmation-status
+https://live.services.trading212.com/rest/v5/trading-types?dealer=T212CY
+wss://live.services.trading212.com/streaming/events/?app=WC4&appVersion=7.29.0&osVersion=&accountSession=ABCD&dUUID=ABCD&EIO=3&transport=websocket
