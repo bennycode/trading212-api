@@ -1,43 +1,69 @@
-import type {AxiosInstance} from 'axios';
+import type { AxiosError, AxiosInstance } from 'axios';
 import axios from 'axios';
-import type {Cookie} from 'playwright';
-import {AccountsAPI} from '../api/v1/accounts/AccountsAPI.js';
-import type {Trading212Environment} from '../getBaseUrl.js';
-import {getBaseServicesUrl} from '../getBaseUrl.js';
-import {enforceAuth} from './enforceAuth.js';
-import type {Trading212Auth} from './getAuth.js';
-import {getAuth} from './getAuth.js';
+import axiosRetry from 'axios-retry';
+import type { Cookie } from 'playwright';
+import { AccountsAPI } from '../api/v1/accounts/AccountsAPI.js';
+import { AuthenticateAPI } from '../api/v1/webclient/AuthenticateAPI.js';
+import type { Trading212Environment } from '../getBaseUrl.js';
+import { getBaseServicesUrl } from '../getBaseUrl.js';
+import type { Trading212Auth } from './getAuth.js';
+import { getAuth } from './getAuth.js';
 
 export class ExperimentalClient {
-  private readonly auth?: Trading212Auth;
-  private readonly serviceClient: AxiosInstance;
-
   // Resources
   readonly accounts: AccountsAPI;
+  readonly authentication: AuthenticateAPI;
+
+  private auth?: Trading212Auth;
+  private readonly httpClient: AxiosInstance;
 
   constructor(readonly environment: Trading212Environment) {
     // Setup Axios
-    this.serviceClient = axios.create({baseURL: getBaseServicesUrl(environment)});
+    this.httpClient = axios.create({baseURL: getBaseServicesUrl(environment)});
+
+    axiosRetry(this.httpClient, {
+      retries: 1,
+      retryCondition: async (error: AxiosError) => {
+        const code = error.code;
+
+        switch (code) {
+          case 'ERR_BAD_REQUEST':
+            await this.relogin();
+            return true;
+        }
+
+        // Abort retry
+        return false;
+      },
+    });
+
     // Resources
-    this.accounts = new AccountsAPI(this.serviceClient);
+    this.accounts = new AccountsAPI(this.httpClient);
+    this.authentication = new AuthenticateAPI(this.httpClient);
   }
 
-  private async login() {
+  async relogin() {
+    this.auth = undefined;
+    return this.login(true);
+  }
+
+  private async login(enforceRelogin: boolean) {
     if (this.auth) {
       return this.auth;
     }
-    return getAuth(`${process.env.TRADING212_EMAIL}`, `${process.env.TRADING212_PASSWORD}`);
+    return getAuth(`${process.env.TRADING212_EMAIL}`, `${process.env.TRADING212_PASSWORD}`, enforceRelogin);
   }
 
   async getAuthentication() {
-    const auth = await this.login();
+    // TODO: Put the 2 lines below into a decorator!
+    const auth = await this.login(false);
     const cookies: Cookie[] = JSON.parse(auth.cookieString);
-    return enforceAuth(auth, cookies);
+    return this.authentication.authenticate(auth, cookies);
   }
 
-  // TODO: Avoid such wrappers and use "this.accounts" instead
   async getAccountSummary() {
-    const auth = await this.login();
+    // TODO: Put the 2 lines below into a decorator!
+    const auth = await this.login(false);
     const cookies: Cookie[] = JSON.parse(auth.cookieString);
     return this.accounts.getAccountSummary(auth, cookies);
   }

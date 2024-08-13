@@ -54,7 +54,7 @@ export async function login(email: string, password: string): Promise<Trading212
  *
  * @see https://github.com/HAKSOAT/tradingTOT/blob/844e7d264fbf5e78adb6a80f3ea8548e5b28fae3/src/tradingTOT/utils/browser.py#L270
  */
-export async function getAuth(email: string, password: string): Promise<Trading212Auth> {
+export async function getAuth(email: string, password: string, enforceRelogin: boolean): Promise<Trading212Auth> {
   const COOKIE_FILE = './credentials/cookie.json';
   const HEADERS_FILE = './credentials/headers.json';
 
@@ -62,16 +62,17 @@ export async function getAuth(email: string, password: string): Promise<Trading2
   const hasHeaders = fse.pathExistsSync(HEADERS_FILE);
 
   const hasAuthFiles = hasCookie && hasHeaders;
-  if (hasAuthFiles) {
+  if (hasAuthFiles && !enforceRelogin) {
     console.log('Using auth from files...');
     return {
       cookieString: fs.readFileSync(COOKIE_FILE, 'utf8'),
       headers: fse.readJsonSync(HEADERS_FILE, {encoding: 'utf8'}),
     };
+  } else {
+    console.log('No auth files found, logging in via browser...');
+    const auth = await login(email, password);
+    fse.outputJsonSync(COOKIE_FILE, JSON.parse(auth.cookieString), {encoding: 'utf8'});
+    fse.outputJsonSync(HEADERS_FILE, auth.headers, {encoding: 'utf8'});
+    return auth;
   }
-  console.log('No auth files found, logging in via browser...');
-  const auth = await login(email, password);
-  fse.outputJsonSync(COOKIE_FILE, JSON.parse(auth.cookieString), {encoding: 'utf8'});
-  fse.outputJsonSync(HEADERS_FILE, auth.headers, {encoding: 'utf8'});
-  return auth;
 }
