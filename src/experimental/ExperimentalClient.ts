@@ -32,6 +32,8 @@ export class ExperimentalClient {
     axiosRetry(this.httpClient, {
       retries: Infinity,
       retryCondition: async (error: AxiosError) => {
+        console.warn(`Request failed on: ${error.config?.baseURL}${error.config?.url}`);
+
         const code = error.code;
         const errorData = error.response?.data;
 

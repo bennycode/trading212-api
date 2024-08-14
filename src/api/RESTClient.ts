@@ -57,6 +57,8 @@ export class RESTClient {
     axiosRetry(this.httpClient, {
       retries: Infinity,
       retryCondition: (error: AxiosError) => {
+        console.warn(`Request failed on: ${error.config?.baseURL}${error.config?.url}`);
+
         const code = error.code;
         const status = error.response?.status;
 
