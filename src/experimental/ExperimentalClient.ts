@@ -28,7 +28,7 @@ export class ExperimentalClient {
 
         switch (code) {
           case 'ERR_BAD_REQUEST':
-            await this.relogin();
+            // await this.relogin();
             return true;
         }
 
@@ -65,6 +65,6 @@ export class ExperimentalClient {
     // TODO: Put the 2 lines below into a decorator!
     const auth = await this.login(false);
     const cookies: Cookie[] = JSON.parse(auth.cookieString);
-    return this.accounts.getAccountSummary(auth, cookies);
+    return this.accounts.getSummary(auth, cookies);
   }
 }

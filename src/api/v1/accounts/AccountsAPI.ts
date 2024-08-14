@@ -1,66 +1,8 @@
 import type {AxiosInstance} from 'axios';
 import type {Cookie} from 'playwright';
 import type {Trading212Auth} from '../../../experimental/getAuth.js';
-import {getdUUID} from '../../../experimental/getdUUID.js';
-import {getUserAgent} from '../../../experimental/getUserAgent.js';
-import {toCookieString} from '../../../experimental/toCookieString.js';
-
-export type AccountSummary = {
-  cash: {
-    free: number;
-    total: number;
-    interest: number;
-    indicator: number;
-    commission: number;
-    cash: number;
-    ppl: number;
-    pplExtendedHours: number;
-    result: number;
-    spreadBack: number;
-    nonRefundable: number;
-    dividend: number;
-    stockInvestment: number;
-    freeForStocks: number;
-    totalCashForWithdraw: number;
-    blockedForStocks: number;
-    pieCash: number;
-  };
-  open: {
-    unfilteredCount: number;
-    items: {
-      positionId: string;
-      humanId: string;
-      created: string;
-      averagePrice: number;
-      averagePriceConverted: number;
-      currentPrice: number;
-      value: number;
-      investment: number;
-      code: string;
-      margin: number;
-      ppl: number;
-      valueExtendedHours: number;
-      quantity: number;
-      maxBuy: number;
-      maxSell: number;
-      maxOpenBuy: number;
-      maxOpenSell: number;
-      frontend: string;
-      autoInvestQuantity: number;
-      fxPpl?: number;
-      lockedQuantity: number;
-      sellableQuantity: number;
-    }[];
-  };
-  orders: {
-    unfilteredCount: number;
-    items: [];
-  };
-  valueOrders: {
-    unfilteredCount: number;
-    items: [];
-  };
-};
+import {getHeaders} from '../../../experimental/getHeaders.js';
+import {AccountSummary} from './AccountSummary.js';
 
 export class AccountsAPI {
   static readonly URL = {
@@ -69,17 +11,12 @@ export class AccountsAPI {
 
   constructor(private readonly apiClient: AxiosInstance) {}
 
-  async getAccountSummary(auth: Trading212Auth, cookies: Cookie[]) {
-    const duuid = getdUUID(cookies);
+  async getSummary(auth: Trading212Auth, cookies: Cookie[]) {
+    const resource = AccountsAPI.URL.SUMMARY_URL;
 
-    const accountSummary = await this.apiClient.post<AccountSummary>(AccountsAPI.URL.SUMMARY_URL, [], {
+    const accountSummary = await this.apiClient.post<AccountSummary>(resource, [], {
       // TODO: Move this to interceptor!
-      headers: {
-        ...auth.headers,
-        Cookie: toCookieString(cookies),
-        'User-Agent': getUserAgent(),
-        'X-Trader-Client': `application=WC4, version=1.0.0, dUUID=${duuid}`,
-      },
+      headers: getHeaders(auth, cookies),
     });
 
     return accountSummary.data;

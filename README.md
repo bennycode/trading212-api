@@ -115,6 +115,10 @@ await axios.post<AccountSummary>(ACCOUNT_SUMMARY_URL, [], {
 });
 ```
 
+The Trading212 Web API is pretty unstable. It even happens on their web client that authentication requests sometimes fail although every other request succeeds:
+
+![AuthenticationFailed](authenticationfailed.png)
+
 ## Internals
 
 This library utilizes [axios](https://github.com/axios/axios) for HTTP calls. You can configure the axios instance using [interceptors](https://axios-http.com/docs/interceptors) if needed. Retries are handled by [axios-retry](https://github.com/softonic/axios-retry), and payloads are validated with [Zod](https://github.com/colinhacks/zod). Unit tests are implemented with [nock](https://github.com/nock/nock) and the headless browser is controlled via [Playwright](https://playwright.dev/).

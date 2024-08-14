@@ -1,0 +1,17 @@
+import {getdUUID} from './getdUUID.js';
+import {getUserAgent} from './getUserAgent.js';
+import {toCookieString} from './toCookieString.js';
+import {Trading212Auth} from './getAuth.js';
+import type {Cookie} from 'playwright';
+
+export function getHeaders(auth: Trading212Auth, cookies: Cookie[]) {
+  const duuid = getdUUID(cookies);
+
+  return {
+    ...auth.headers,
+    Cookie: toCookieString(cookies),
+    'User-Agent': getUserAgent(),
+    'X-Trader-Client': `application=WC4,version=7.29.1,dUUID=dUUID=${duuid}`,
+    'X-Trader-Device-Mode': 'Chrome',
+  };
+}
