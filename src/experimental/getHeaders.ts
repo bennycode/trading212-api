@@ -1,7 +1,7 @@
 import {getdUUID} from './getdUUID.js';
 import {getUserAgent} from './getUserAgent.js';
 import {toCookieString} from './toCookieString.js';
-import {Trading212Auth} from './getAuth.js';
+import type {Trading212Auth} from './getAuth.js';
 import type {Cookie} from 'playwright';
 
 export function getHeaders(auth: Trading212Auth, cookies: Cookie[]) {

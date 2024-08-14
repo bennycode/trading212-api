@@ -2,7 +2,7 @@ import type {AxiosInstance} from 'axios';
 import type {Cookie} from 'playwright';
 import type {Trading212Auth} from '../../../experimental/getAuth.js';
 import {getHeaders} from '../../../experimental/getHeaders.js';
-import {AccountSummary} from './AccountSummary.js';
+import type {AccountSummary} from './AccountSummary.js';
 
 export class AccountsAPI {
   static readonly URL = {
