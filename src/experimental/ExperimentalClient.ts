@@ -8,6 +8,7 @@ import type {Trading212Environment} from '../getBaseUrl.js';
 import {getBaseServicesUrl} from '../getBaseUrl.js';
 import type {Trading212Auth} from './getAuth.js';
 import {getAuth} from './getAuth.js';
+import {addHeaders, getHeaders} from './headers.js';
 
 export class ExperimentalClient {
   // Resources
@@ -21,19 +22,38 @@ export class ExperimentalClient {
     // Setup Axios
     this.httpClient = axios.create({baseURL: getBaseServicesUrl(environment)});
 
+    this.httpClient.interceptors.request.use(async config => {
+      const auth = await this.login(false);
+      const cookies: Cookie[] = JSON.parse(auth.cookieString);
+      addHeaders(config.headers, getHeaders(auth, cookies));
+      return config;
+    });
+
     axiosRetry(this.httpClient, {
-      retries: 1,
+      retries: Infinity,
       retryCondition: async (error: AxiosError) => {
         const code = error.code;
+        const errorData = error.response?.data;
+
+        if (errorData && typeof errorData === 'object' && 'code' in errorData) {
+          switch (errorData.code) {
+            case 'InternalError':
+              return true;
+          }
+        }
 
         switch (code) {
           case 'ERR_BAD_REQUEST':
+            // TODO: Relogin on authentication failure
             // await this.relogin();
-            return true;
+            return false;
         }
 
         // Abort retry
         return false;
+      },
+      retryDelay: (retryCount: number) => {
+        return retryCount * 1_000;
       },
     });
 
@@ -50,21 +70,13 @@ export class ExperimentalClient {
   private async login(enforceRelogin: boolean) {
     if (this.auth) {
       return this.auth;
+    } else {
+      this.auth = await getAuth(
+        `${process.env.TRADING212_EMAIL}`,
+        `${process.env.TRADING212_PASSWORD}`,
+        enforceRelogin
+      );
+      return this.auth;
     }
-    return getAuth(`${process.env.TRADING212_EMAIL}`, `${process.env.TRADING212_PASSWORD}`, enforceRelogin);
-  }
-
-  async getAuthentication() {
-    // TODO: Put the 2 lines below into a decorator!
-    const auth = await this.login(false);
-    const cookies: Cookie[] = JSON.parse(auth.cookieString);
-    return this.authentication.authenticate(auth, cookies);
-  }
-
-  async getAccountSummary() {
-    // TODO: Put the 2 lines below into a decorator!
-    const auth = await this.login(false);
-    const cookies: Cookie[] = JSON.parse(auth.cookieString);
-    return this.accounts.getSummary(auth, cookies);
   }
 }

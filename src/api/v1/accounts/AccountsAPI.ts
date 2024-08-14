@@ -1,7 +1,4 @@
 import type {AxiosInstance} from 'axios';
-import type {Cookie} from 'playwright';
-import type {Trading212Auth} from '../../../experimental/getAuth.js';
-import {getHeaders} from '../../../experimental/getHeaders.js';
 import type {AccountSummary} from './AccountSummary.js';
 
 export class AccountsAPI {
@@ -11,14 +8,12 @@ export class AccountsAPI {
 
   constructor(private readonly apiClient: AxiosInstance) {}
 
-  async getSummary(auth: Trading212Auth, cookies: Cookie[]) {
+  /**
+   * Note: Sometimes this endpoint throws an "InternalError" due to Trading212 unstable APIs.
+   */
+  async getSummary() {
     const resource = AccountsAPI.URL.SUMMARY_URL;
-
-    const accountSummary = await this.apiClient.post<AccountSummary>(resource, [], {
-      // TODO: Move this to interceptor!
-      headers: getHeaders(auth, cookies),
-    });
-
+    const accountSummary = await this.apiClient.post<AccountSummary>(resource, []);
     return accountSummary.data;
   }
 }
