@@ -70,13 +70,8 @@ export class ExperimentalClient {
   private async login(enforceRelogin: boolean) {
     if (this.auth) {
       return this.auth;
-    } else {
-      this.auth = await getAuth(
-        `${process.env.TRADING212_EMAIL}`,
-        `${process.env.TRADING212_PASSWORD}`,
-        enforceRelogin
-      );
-      return this.auth;
     }
+    this.auth = await getAuth(`${process.env.TRADING212_EMAIL}`, `${process.env.TRADING212_PASSWORD}`, enforceRelogin);
+    return this.auth;
   }
 }

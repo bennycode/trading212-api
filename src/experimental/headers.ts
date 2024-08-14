@@ -3,7 +3,7 @@ import {getUserAgent} from './getUserAgent.js';
 import {toCookieString} from './toCookieString.js';
 import type {Trading212Auth} from './getAuth.js';
 import type {Cookie} from 'playwright';
-import {AxiosRequestHeaders} from 'axios';
+import type {AxiosRequestHeaders} from 'axios';
 
 export function getHeaders(auth: Trading212Auth, cookies: Cookie[]) {
   const duuid = getdUUID(cookies);
