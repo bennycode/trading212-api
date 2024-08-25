@@ -133,7 +133,7 @@ When the "credentials" are wrong or expired, the API will show:
 
 In such cases, simply delete the "[credentials](./credentials/)" directory and try again.
 
-The Browser API is build on findings from the article "[I Reverse-Engineered Trading212’s Web APIs ](https://haksoat.com/reverse-engineering-trading212/)".
+The Browser API is build on findings from the article "[I Reverse-Engineered Trading212’s Web APIs ](https://haksoat.com/reverse-engineering-trading212/)". You can find the matching Python code in the [TradingTOT library](https://github.com/HAKSOAT/tradingTOT) on GitHub.
 
 > [!CAUTION] The Trading212 Browser API is quite unstable. Even on their web client, authentication requests sometimes fail while other requests succeed.
 
