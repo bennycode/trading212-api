@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import type {AxiosInstance} from 'axios';
-import {DEVICE} from '../../union.js';
+import {DEVICE} from '../../unions.js';
 
 const PortfolioOpenPositionSchema = z.object({
   averagePrice: z.number(),

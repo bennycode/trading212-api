@@ -2,15 +2,15 @@ import type {AxiosError, AxiosInstance} from 'axios';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import type {Cookie} from 'playwright';
-import {AccountsAPI} from '../api/v1/accounts/AccountsAPI.js';
-import {AuthenticateAPI} from '../api/v1/webclient/AuthenticateAPI.js';
+import {AccountsAPI} from '../rest/v1/accounts/AccountsAPI.js';
+import {AuthenticateAPI} from '../rest/v1/webclient/AuthenticateAPI.js';
 import type {Trading212Environment} from '../getBaseUrl.js';
 import {getBaseServicesUrl} from '../getBaseUrl.js';
-import type {Trading212Auth} from './getAuth.js';
-import {getAuth} from './getAuth.js';
-import {addHeaders, getHeaders} from './headers.js';
+import type {Trading212Auth} from './auth/getAuth.js';
+import {getAuth} from './auth/getAuth.js';
+import {addHeaders, getHeaders} from './auth/headers.js';
 
-export class ExperimentalClient {
+export class BrowserClient {
   // Resources
   readonly accounts: AccountsAPI;
   readonly authentication: AuthenticateAPI;

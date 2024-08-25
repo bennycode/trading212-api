@@ -1,6 +1,6 @@
 import {getdUUID} from './getdUUID.js';
 import {getUserAgent} from './getUserAgent.js';
-import {toCookieString} from './toCookieString.js';
+import {toCookieString} from '../toCookieString.js';
 import type {Trading212Auth} from './getAuth.js';
 import type {Cookie} from 'playwright';
 import type {AxiosRequestHeaders} from 'axios';

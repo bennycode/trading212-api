@@ -53,7 +53,7 @@ console.log(info);
 
 ### API Key Generation
 
-In order to generate an API key you can follow the [official instructions](https://helpcentre.trading212.com/hc/en-us/articles/14584770928157). Basically, you need to [login](https://app.trading212.com/), click on your account and do the following:
+In order to generate an API key, you can follow the [official instructions](https://helpcentre.trading212.com/hc/en-us/articles/14584770928157). Basically, you need to [login](https://app.trading212.com/), click on your account and do the following:
 
 1. Click "Switch to Practice" in order to generate an API key for the demo code, otherwise a live API key will be generated
 2. Go to "Settings"
@@ -69,9 +69,11 @@ If cloning the project locally, you can also add a `.env` file to configure the 
 npm run demo:account
 ```
 
-## Experimental API
+## Browser API
 
-The official Trading212 API does not support placing orders in a live environment. Therefore, this library includes an experimental API that uses a headless Chrome browser to execute trades programmatically. You will need to log in with your username and password, so make sure to set the following environment parameters in your `.env` file:
+The official Trading212 API does not support placing orders in a live environment. To address this, the library includes an experimental Browser API that uses a headless Chrome browser for programmatic trading.
+
+The Browser API will need to log in with your username and password, so ensure you set the following environment parameters in your `.env` file:
 
 ```bash
 TRADING212_HEADLESS_BROWSER=false
@@ -79,18 +81,20 @@ TRADING212_EMAIL=name@mail.com
 TRADING212_PASSWORD=secret
 ```
 
-This technique will log in locally using your credentials and save them in the "[credentials](./credentials/)" directory. This avoids unnecessary re-logins, as the login token remains valid for the duration of the session.
+This technique will log in locally using your credentials and save them in the "[credentials](./credentials/)" directory. This prevents unnecessary re-logins, as the login token remains valid for the session.
 
-Here is how you can use the experimental API:
+Here's how to use the Browser API:
 
 ```ts
 import {initClient} from 'trading212-api';
 
-const auth = await client.experimental.getAuthentication();
-console.log(auth.email);
+const client = await initClient();
+
+const accountSummary = await client.browser.accounts.getSummary();
+console.log(accountSummary.cash.free);
 ```
 
-Locally you can test it using:
+Locally you can test it with:
 
 ```bash
 npm start
@@ -98,7 +102,7 @@ npm start
 
 ### Discoveries
 
-The Trading212 experimental API will show this error when submitting an empty object (`{}`):
+The Trading212 Browser API will show this error when submitting an empty object (`{}`):
 
 > data: { code: 'InternalError' }
 
@@ -115,7 +119,23 @@ await axios.post<AccountSummary>(ACCOUNT_SUMMARY_URL, [], {
 });
 ```
 
-The Trading212 Web API is pretty unstable. It even happens on their web client that authentication requests sometimes fail although every other request succeeds:
+When the "credentials" are wrong or expired, the API will show:
+
+```json
+{
+  "code": "AuthenticationFailed",
+  "context": {
+    "type": "InvalidSession"
+  },
+  "errorMessage": "Invalid account session cookie"
+}
+```
+
+In such cases, simply delete the "[credentials](./credentials/)" directory and try again.
+
+The Browser API is build on findings from the article "[I Reverse-Engineered Trading212’s Web APIs ](https://haksoat.com/reverse-engineering-trading212/)".
+
+> [!CAUTION] The Trading212 Browser API is quite unstable. Even on their web client, authentication requests sometimes fail while other requests succeed.
 
 ![AuthenticationFailed](authenticationfailed.png)
 

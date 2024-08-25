@@ -1,6 +1,6 @@
 import type {AxiosInstance} from 'axios';
 import {z} from 'zod';
-import {DIVIDEND_CASH_ACTION, PIE_ICON, PIE_STATUS_GOAL} from '../../union.js';
+import {DIVIDEND_CASH_ACTION, PIE_ICON, PIE_STATUS_GOAL} from '../../unions.js';
 
 const CreatePieSchema = z.object({
   dividendCashAction: DIVIDEND_CASH_ACTION,

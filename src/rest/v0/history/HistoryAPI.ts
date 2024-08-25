@@ -12,7 +12,7 @@ import {
   TAX_NAME,
   TIME_VALIDITY,
   TRANSACTION_TYPE,
-} from '../../union.js';
+} from '../../unions.js';
 
 const ExportSchema = z.object({
   dataIncluded: z.object({
