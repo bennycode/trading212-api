@@ -32,10 +32,12 @@ export class BrowserClient {
     axiosRetry(this.httpClient, {
       retries: Infinity,
       retryCondition: async (error: AxiosError) => {
-        console.warn(`Request failed on: ${error.config?.baseURL}${error.config?.url}`);
-
         const code = error.code;
         const errorData = error.response?.data;
+
+        console.warn(
+          `Request failed on: ${error.config?.baseURL}${error.config?.url} - ${typeof errorData === 'object' ? JSON.stringify(errorData) : error}`
+        );
 
         if (errorData && typeof errorData === 'object' && 'code' in errorData) {
           switch (errorData.code) {
