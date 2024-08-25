@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import type {AxiosInstance} from 'axios';
-import {ORDER_STATUS, ORDER_STRATEGY, ORDER_TYPE, TIME_VALIDITY} from '../union.js';
+import {ORDER_STATUS, ORDER_STRATEGY, ORDER_TYPE, TIME_VALIDITY} from '../../unions.js';
 
 const OrderSchema = z.object({
   creationTime: z.string().datetime({offset: true}),
@@ -78,8 +78,8 @@ export class OrderAPI {
     ORDERS: '/api/v0/equity/orders',
     ORDERS_LIMIT: '/api/v0/equity/orders/limit',
     ORDERS_MARKET: '/api/v0/equity/orders/market',
-    ORDERS_STOP_LIMIT: '/api/v0/equity/orders/stop_limit',
     ORDERS_STOP: '/api/v0/equity/orders/stop',
+    ORDERS_STOP_LIMIT: '/api/v0/equity/orders/stop_limit',
   };
 
   constructor(private readonly apiClient: AxiosInstance) {}

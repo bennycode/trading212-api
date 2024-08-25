@@ -2,8 +2,17 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["vitest/globals"]
+    "rootDir": "src",
+    "types": [
+      "vitest/globals"
+    ]
   },
-  "include": ["src/**/*", "vitest.config.ts"],
+  "exclude": [
+    "coverage",
+    "dist",
+    "docs",
+    "playwright.config.ts",
+    "vitest.config.ts"
+  ],
   "extends": "@tstv/tsconfig-common/tsconfig.json"
 }

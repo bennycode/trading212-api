@@ -1,6 +1,6 @@
 import type {AxiosInstance} from 'axios';
 import {z} from 'zod';
-import {DIVIDEND_CASH_ACTION, PIE_ICON, PIE_STATUS_GOAL} from '../union.js';
+import {DIVIDEND_CASH_ACTION, PIE_ICON, PIE_STATUS_GOAL} from '../../unions.js';
 
 const CreatePieSchema = z.object({
   dividendCashAction: DIVIDEND_CASH_ACTION,
@@ -52,8 +52,8 @@ const DetailedPieSchema = z.object({
     goal: z.number(),
     icon: PIE_ICON,
     id: z.number(),
-    instrumentShares: z.union([z.null(), z.record(z.number())]),
     initialInvestment: z.number(),
+    instrumentShares: z.union([z.null(), z.record(z.number())]),
     name: z.string(),
     publicUrl: z.union([z.string(), z.null()]),
   }),

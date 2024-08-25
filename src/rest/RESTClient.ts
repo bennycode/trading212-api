@@ -1,19 +1,21 @@
 import type {
   AxiosDefaults,
+  AxiosError,
+  AxiosInstance,
   AxiosInterceptorManager,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosInstance,
-  AxiosError,
 } from 'axios';
-import axios, {isAxiosError} from 'axios';
+import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import {AccountAPI} from './api/account/AccountAPI.js';
-import {MetadataAPI} from './api/metadata/MetadataAPI.js';
-import {PortfolioAPI} from './api/portfolio/PortfolioAPI.js';
-import {HistoryAPI} from './api/history/HistoryAPI.js';
-import {OrderAPI} from './api/order/OrderAPI.js';
-import {PieAPI} from './api/pie/PieAPI.js';
+import type {Trading212Environment} from '../getBaseUrl.js';
+import {getBaseUrl} from '../getBaseUrl.js';
+import {AccountAPI} from './v0/account/AccountAPI.js';
+import {HistoryAPI} from './v0/history/HistoryAPI.js';
+import {MetadataAPI} from './v0/metadata/MetadataAPI.js';
+import {OrderAPI} from './v0/order/OrderAPI.js';
+import {PieAPI} from './v0/pie/PieAPI.js';
+import {PortfolioAPI} from './v0/portfolio/PortfolioAPI.js';
 
 /**
  * This class configures the HTTP Library (axios) so it uses the proper URL and reconnection states. It also exposes all available endpoints.
@@ -41,11 +43,11 @@ export class RESTClient {
   private readonly httpClient: AxiosInstance;
 
   constructor(
-    readonly baseURL: string,
+    readonly environment: Trading212Environment,
     private readonly apiKey: string
   ) {
     // Setup Axios
-    this.httpClient = axios.create({baseURL});
+    this.httpClient = axios.create({baseURL: getBaseUrl(environment)});
 
     this.httpClient.interceptors.request.use(config => {
       config.headers.Authorization = this.apiKey;
@@ -55,37 +57,38 @@ export class RESTClient {
     axiosRetry(this.httpClient, {
       retries: Infinity,
       retryCondition: (error: AxiosError) => {
-        if (isAxiosError(error)) {
-          // Handle Airplane mode
-          if (error.code === 'EAI_AGAIN') {
-            return true;
-          }
+        console.warn(`Request failed on: ${error.config?.baseURL}${error.config?.url}`);
 
-          // Handle response errors
-          const status = error.response?.status;
-          switch (status) {
-            case 429:
-              // Got rate limited
-              return true;
-            default:
-              return false;
-          }
+        const code = error.code;
+        const status = error.response?.status;
+
+        switch (code) {
+          // Airplane mode
+          case 'EAI_AGAIN':
+            return true;
         }
+
+        switch (status) {
+          case 429:
+            // Got rate limited
+            return true;
+        }
+
         // Abort retry
         return false;
       },
       retryDelay: (retryCount: number, error: AxiosError) => {
-        const url = error.config?.url;
         const method = error.config?.method;
+        const url = error.config?.url;
 
         if (method === 'get') {
           // If a particular order ID is fetched we can use a lower timeout
-          if (url?.includes(OrderAPI.URL.ORDERS + '/')) {
+          if (url?.includes(`${OrderAPI.URL.ORDERS}/`)) {
             return 1_000;
           }
 
           // If a particular pie ID is fetched we can use a lower timeout
-          if (url?.includes(PieAPI.URL.PIES + '/')) {
+          if (url?.includes(`${PieAPI.URL.PIES}/`)) {
             return 5_000;
           }
         }

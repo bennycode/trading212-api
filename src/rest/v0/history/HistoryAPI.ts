@@ -1,7 +1,7 @@
 import type {AxiosInstance} from 'axios';
 import {URLSearchParams} from 'node:url';
 import {z} from 'zod';
-import {getPageGenerator} from '../../pagination/getPageGenerator.js';
+import {getPageGenerator} from '../../../pagination/getPageGenerator.js';
 import {
   DEVICE,
   DIVIDEND_TYPE,
@@ -12,7 +12,7 @@ import {
   TAX_NAME,
   TIME_VALIDITY,
   TRANSACTION_TYPE,
-} from '../union.js';
+} from '../../unions.js';
 
 const ExportSchema = z.object({
   dataIncluded: z.object({

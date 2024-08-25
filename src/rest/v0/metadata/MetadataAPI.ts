@@ -1,6 +1,6 @@
 import type {AxiosInstance} from 'axios';
 import {z} from 'zod';
-import {INSTRUMENT_TYPE} from '../union.js';
+import {INSTRUMENT_TYPE} from '../../unions.js';
 
 const MetadataExchangeSchema = z.object({
   id: z.number(),
