@@ -42,14 +42,17 @@ export class BrowserClient {
         if (errorData && typeof errorData === 'object' && 'code' in errorData) {
           switch (errorData.code) {
             case 'InternalError':
+              // Note: This usually happens when logging in from a second device while the first device already has a working cookie. You may need to log out from the first device.
               return true;
+            case 'AuthenticationFailed':
+              // TODO: Relogin if "context.type" is "InvalidSession" and update the request with the new cookie data before retrying.
+              // await this.relogin();
+              return false;
           }
         }
 
         switch (code) {
           case 'ERR_BAD_REQUEST':
-            // TODO: Relogin on authentication failure
-            // await this.relogin();
             return false;
         }
 
