@@ -71,6 +71,9 @@ npm run demo:account
 
 ## Browser API
 
+> [!CAUTION] 
+> The Trading212 Browser API is quite unstable. Even on their web client, authentication requests sometimes fail while other requests succeed.
+
 The official Trading212 API does not support placing orders in a live environment. To address this, the library includes an experimental Browser API that uses a headless Chrome browser for programmatic trading.
 
 The Browser API will need to log in with your username and password, so ensure you set the following environment parameters in your `.env` file:
@@ -133,11 +136,9 @@ When the "credentials" are wrong or expired, the API will show:
 
 In such cases, simply delete the "[credentials](./credentials/)" directory and try again.
 
+### Inspiration
+
 The Browser API is build on findings from the article "[I Reverse-Engineered Trading212’s Web APIs ](https://haksoat.com/reverse-engineering-trading212/)". You can find the matching Python code in the [TradingTOT library](https://github.com/HAKSOAT/tradingTOT) on GitHub.
-
-> [!CAUTION] The Trading212 Browser API is quite unstable. Even on their web client, authentication requests sometimes fail while other requests succeed.
-
-![AuthenticationFailed](authenticationfailed.png)
 
 ## Internals
 
