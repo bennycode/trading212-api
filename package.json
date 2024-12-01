@@ -10,7 +10,7 @@
   },
   "description": "",
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.16.4",
+    "@arethetypeswrong/cli": "^0.17.0",
     "@evilmartians/lefthook": "^1.6.18",
     "@openapitools/openapi-generator-cli": "^2.13.4",
     "@playwright/test": "^1.45.0",
