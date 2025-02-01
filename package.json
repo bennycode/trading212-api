@@ -23,7 +23,7 @@
     "dotenv-defaults": "^5.0.2",
     "eslint": "^9.19.0",
     "generate-changelog": "^1.8.0",
-    "nock": "^13.5.4",
+    "nock": "^14.0.0",
     "prettier": "^3.3.2",
     "rimraf": "^6.0.1",
     "tsimp": "^2.0.11",
