@@ -29,7 +29,7 @@
     "tsimp": "^2.0.11",
     "typedoc": "^0.28.1",
     "typescript": "^5.5.3",
-    "vitest": "^2.0.5"
+    "vitest": "^4.0.6"
   },
   "files": [
     "dist",
