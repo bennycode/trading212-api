@@ -11,7 +11,7 @@
   "description": "",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.1",
-    "@evilmartians/lefthook": "^1.6.18",
+    "@evilmartians/lefthook": "^2.0.2",
     "@openapitools/openapi-generator-cli": "^2.13.4",
     "@playwright/test": "^1.45.0",
     "@tstv/eslint-config": "^4.0.0",
