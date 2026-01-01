@@ -6,7 +6,7 @@
     "axios": "^1.7.2",
     "axios-retry": "^4.4.1",
     "fs-extra": "^11.2.0",
-    "zod": "^3.23.8"
+    "zod": "^4.3.4"
   },
   "description": "",
   "devDependencies": {
